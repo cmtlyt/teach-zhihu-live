@@ -16,6 +16,8 @@
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
+    "@arco-design/web-vue": "^2.53.3",
+    "@arco-plugins/vite-vue": "^1.4.5",
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
     "@milahu/patch-package": "^6.4.14",

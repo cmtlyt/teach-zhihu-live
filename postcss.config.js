@@ -7,7 +7,7 @@ export default {
     'postcss-pxtorem': {
       rootValue: 10,
       mediaQuery: false,
-      selectorBlackList: [],
+      selectorBlackList: [':root'],
       propList: ['*'],
     },
     'postcss-preset-env': {},

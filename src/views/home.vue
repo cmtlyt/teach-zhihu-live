@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import SvgIcon from '@/components/SvgIcon.vue'
 import HelloWorld from '@/components/HelloWorld.vue'
+import TestForm from '@/components/TestForm.vue'
 </script>
 
 <template>
@@ -25,6 +26,7 @@ import HelloWorld from '@/components/HelloWorld.vue'
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
+  <TestForm />
 </template>
 
 <style scoped lang="scss">
