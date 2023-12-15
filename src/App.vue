@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
+import SvgIcon from './components/SvgIcon.vue'
 </script>
 
 <template>
@@ -8,20 +9,18 @@ import HelloWorld from './components/HelloWorld.vue'
       href="https://vitejs.dev"
       target="_blank"
     >
-      <img
-        src="/vite.svg"
+      <SvgIcon
+        name="vite"
         class="logo"
-        alt="Vite logo"
       />
     </a>
     <a
       href="https://vuejs.org/"
       target="_blank"
     >
-      <img
-        src="./assets/vue.svg"
+      <SvgIcon
+        name="vue"
         class="logo vue"
-        alt="Vue logo"
       />
     </a>
   </div>

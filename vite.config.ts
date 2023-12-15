@@ -5,6 +5,7 @@ import viteImagemin from '@vheemstra/vite-plugin-imagemin'
 import imageminWebp from 'imagemin-webp'
 import imageminSvg from 'imagemin-svgo'
 import imageminGif2webp from 'imagemin-gif2webp'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 const styleVariablePath = normalizePath(path.resolve(__dirname, './src/variable.scss'))
 
@@ -23,6 +24,9 @@ export default defineConfig({
           gif: imageminGif2webp(),
         },
       },
+    }),
+    createSvgIconsPlugin({
+      iconDirs: [path.join(__dirname, './src/assets/icons')],
     }),
   ],
   css: {
