@@ -39,4 +39,10 @@ export default defineConfig({
   optimizeDeps: {
     include: ['vue'],
   },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+      // '@icon': path.resolve(__dirname, './src/assets/icons'),
+    },
+  },
 })
