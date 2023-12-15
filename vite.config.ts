@@ -1,14 +1,30 @@
-import { defineConfig, normalizePath } from "vite";
-import vue from "@vitejs/plugin-vue";
-import path from "path";
+import { defineConfig, normalizePath } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import path from 'path'
+import viteImagemin from '@vheemstra/vite-plugin-imagemin'
+import imageminWebp from 'imagemin-webp'
+import imageminSvg from 'imagemin-svgo'
+import imageminGif2webp from 'imagemin-gif2webp'
 
-const styleVariablePath = normalizePath(
-  path.resolve(__dirname, "./src/variable.scss")
-);
+const styleVariablePath = normalizePath(path.resolve(__dirname, './src/variable.scss'))
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    viteImagemin({
+      plugins: {
+        svg: imageminSvg(),
+      },
+      makeWebp: {
+        plugins: {
+          jpg: imageminWebp(),
+          png: imageminWebp(),
+          gif: imageminGif2webp(),
+        },
+      },
+    }),
+  ],
   css: {
     preprocessorOptions: {
       scss: {
@@ -16,4 +32,4 @@ export default defineConfig({
       },
     },
   },
-});
+})
