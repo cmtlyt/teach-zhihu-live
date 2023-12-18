@@ -42,4 +42,14 @@ export default defineConfig({
       '@icon': path.resolve(__dirname, './src/assets/icons'),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vue-vendor': ['vue', 'vue-router', 'pinia'],
+          'comp-vendor': ['@arco-design/web-vue'],
+        },
+      },
+    },
+  },
 })
