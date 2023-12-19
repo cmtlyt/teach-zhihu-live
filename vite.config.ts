@@ -10,6 +10,7 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 // import Components from 'unplugin-vue-components/vite'
 // import { ArcoResolver } from 'unplugin-vue-components/resolvers'
 import { vitePluginForArco } from '@arco-plugins/vite-vue'
+import legacy from '@vitejs/plugin-legacy'
 
 const styleVariablePath = normalizePath(path.resolve(__dirname, './src/variable.scss'))
 
@@ -25,6 +26,7 @@ export default defineConfig({
     // AutoImport({ resolvers: [ArcoResolver()] }),
     // Components({ resolvers: [ArcoResolver({ sideEffect: true })] }),
     vitePluginForArco({ style: 'css' }),
+    legacy(),
   ],
   css: {
     preprocessorOptions: {
