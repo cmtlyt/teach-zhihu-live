@@ -36,7 +36,16 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ['vue', 'vue-router', '@arco-design/web-vue', 'pinia'],
+    include: [
+      'vue',
+      'vue-router',
+      '@arco-design/web-vue',
+      'pinia',
+      '@fingerprintjs/fingerprintjs',
+      '@vueuse/core',
+      'mitt',
+      'simdjson',
+    ],
   },
   resolve: {
     alias: {
