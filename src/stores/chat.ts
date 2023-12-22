@@ -1,6 +1,7 @@
 import { sendImageMessage, sendWordMessage } from '@/api/chat'
-import type { TMessageConfig, TMessageItem, TWordMessage } from '@/types/chat'
+import type { THistoryMap, TMessageConfig, TMessageItem } from '@/types/chat'
 import { defineStore } from 'pinia'
+import { useDebounceFn } from '@vueuse/core'
 
 async function _postMessage(messages: TMessageItem[], messageConfig: TMessageConfig) {
   switch (messageConfig.type) {
@@ -19,7 +20,7 @@ const storageKey = 'chatHistory'
 
 export const useChatStore = defineStore('chat', {
   state() {
-    const historyMap: Record<string, TMessageItem[]> = JSON.parse(localStorage.getItem(storageKey) || '{}')
+    const historyMap: THistoryMap = JSON.parse(localStorage.getItem(storageKey) || '{}')
     return {
       historyMap,
       currChatId: '',
@@ -31,14 +32,20 @@ export const useChatStore = defineStore('chat', {
     },
   },
   actions: {
+    _saveHistory: useDebounceFn((historyMap: THistoryMap) => {
+      localStorage.setItem(storageKey, JSON.stringify(historyMap))
+    }, 50),
     createMessage(message: TMessageItem) {
       this.history.push(message)
-      localStorage.setItem(storageKey, JSON.stringify(this.historyMap))
+      this._saveHistory(this.historyMap)
     },
     async postMessage(messageConfig: TMessageConfig) {
       return _postMessage(this.history, messageConfig).then((content) => {
-        this.createMessage((messageConfig as TWordMessage).content)
-        this.createMessage({ content, role: 'assistant' })
+        let message: TMessageItem | null = null
+        if (messageConfig.type == 'word') message = { role: 'user', content: messageConfig.content }
+        else if (messageConfig.type == 'image') message = { role: 'user', content: messageConfig.prompt }
+        message && this.createMessage(message)
+        this.createMessage({ role: 'assistant', content })
       })
     },
     selectChat(chatId: string) {

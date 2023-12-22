@@ -2,10 +2,10 @@ import type { TChunkCallback, TMessageItem } from '@/types/chat'
 
 export const sendWordMessage = (() => {
   const decoder = new TextDecoder()
-  return async (messages: TMessageItem[], content: TMessageItem, chunkCallback: TChunkCallback) => {
+  return async (messages: TMessageItem[], content: string, chunkCallback: TChunkCallback) => {
     return fetch('https://openai-test-openai-vmywofnavp.us-west-1.fcapp.run/chat', {
       method: 'POST',
-      body: JSON.stringify({ messages, content }),
+      body: JSON.stringify({ messages, content: { role: 'user', content } }),
       headers: { 'Content-Type': 'application/json' },
     })
       .then((res) => res.body!.getReader())

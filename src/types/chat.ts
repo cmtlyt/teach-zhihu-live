@@ -5,16 +5,18 @@ export type TMessageItem = {
   content: string
 }
 
-export type TWordMessage = {
+type TWordMessage = {
   type: 'word'
-  content: TMessageItem
+  content: string
   chunkCallback: TChunkCallback
 }
 
-export type TImageMessage = {
+type TImageMessage = {
   type: 'image'
   prompt: string
   chunkCallback: TChunkCallback
 }
 
 export type TMessageConfig = TWordMessage | TImageMessage
+
+export type THistoryMap = Record<string, TMessageItem[]>
