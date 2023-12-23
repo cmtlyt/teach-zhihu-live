@@ -2,6 +2,9 @@
 import SvgIcon from '@/components/SvgIcon.vue'
 import HelloWorld from '@/components/HelloWorld.vue'
 import TestForm from '@/components/TestForm.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t: $t } = useI18n()
 </script>
 
 <template>
@@ -25,6 +28,8 @@ import TestForm from '@/components/TestForm.vue'
       />
     </a>
   </div>
+  <span v-t="'home.title'"></span>
+  <span>{{ $t('home.title') }}</span>
   <HelloWorld msg="Vite + Vue" />
   <TestForm />
 </template>
