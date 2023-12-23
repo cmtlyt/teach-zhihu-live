@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import SvgIcon from '@/components/SvgIcon.vue'
-import HelloWorld from '@/components/HelloWorld.vue'
 import TestForm from '@/components/TestForm.vue'
 import { useI18n } from 'vue-i18n'
 import { usePagination, useRequest } from 'vue-request'
@@ -59,7 +58,6 @@ pageRun({ current: current.value, pageSize: pageSize.value })
   </div>
   <span v-t="'home.title'"></span>
   <span>{{ $t('home.title') }}</span>
-  <HelloWorld msg="Vite + Vue" />
   <TestForm />
 </template>
 
