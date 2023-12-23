@@ -43,6 +43,9 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
       '@icon': path.resolve(__dirname, './src/assets/icons'),
+      '@comp': path.resolve(__dirname, './src/components'),
+      '@type': path.resolve(__dirname, './src/types'),
+      '@store': path.resolve(__dirname, './src/stores'),
     },
   },
   build: {

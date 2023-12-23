@@ -22,7 +22,10 @@
 
     "paths": {
       "@/*": ["./src/*"],
-      "@icon/*": ["./src/assets/icons/*"]
+      "@icon/*": ["./src/assets/icons/*"],
+      "@comp/*": ["./src/assets/comps/*"],
+      "@type/*": ["./src/assets/types/*"],
+      "@store/*": ["./src/assets/stores/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
