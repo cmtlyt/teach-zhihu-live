@@ -1,8 +1,13 @@
 {
-  "name": "@picoonal/ai-publish-red-book",
+  "name": "vue3-template",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
+  "author": {
+    "name": "cmtlyt",
+    "email": "cmtlyt@163.com"
+  },
+  "license": "MIT",
   "scripts": {
     "prepare": "husky install",
     "postinstall": "patch-package",
