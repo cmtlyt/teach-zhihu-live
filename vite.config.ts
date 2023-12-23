@@ -12,6 +12,7 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { vitePluginForArco } from '@arco-plugins/vite-vue'
 import legacy from '@vitejs/plugin-legacy'
 import packageConfig from './package.json'
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 
 const styleVariablePath = normalizePath(path.resolve(__dirname, './src/variable.scss'))
 
@@ -23,11 +24,12 @@ export default defineConfig({
       plugins: { svg: imageminSvg() },
       makeWebp: { plugins: { jpg: imageminWebp(), png: imageminWebp(), gif: imageminGif2webp() } },
     }),
-    createSvgIconsPlugin({ iconDirs: [path.join(__dirname, './src/assets/icons')] }),
+    createSvgIconsPlugin({ iconDirs: [normalizePath(path.join(__dirname, './src/assets/icons'))] }),
     // AutoImport({ resolvers: [ArcoResolver()] }),
     // Components({ resolvers: [ArcoResolver({ sideEffect: true })] }),
     vitePluginForArco({ style: 'css' }),
     legacy(),
+    VueI18nPlugin({ include: normalizePath(path.resolve(__dirname, './src/locales/*.json')) }),
   ],
   css: {
     preprocessorOptions: {
@@ -41,11 +43,11 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-      '@icon': path.resolve(__dirname, './src/assets/icons'),
-      '@comp': path.resolve(__dirname, './src/components'),
-      '@type': path.resolve(__dirname, './src/types'),
-      '@store': path.resolve(__dirname, './src/stores'),
+      '@': normalizePath(path.resolve(__dirname, './src')),
+      '@icon': normalizePath(path.resolve(__dirname, './src/assets/icons')),
+      '@comp': normalizePath(path.resolve(__dirname, './src/components')),
+      '@type': normalizePath(path.resolve(__dirname, './src/types')),
+      '@store': normalizePath(path.resolve(__dirname, './src/stores')),
     },
   },
   build: {
@@ -54,6 +56,7 @@ export default defineConfig({
         manualChunks: {
           'vue-vendor': ['vue', 'vue-router', 'pinia'],
           'comp-vendor': ['@arco-design/web-vue'],
+          'locale-vendor': ['./src/locales'],
         },
       },
     },
