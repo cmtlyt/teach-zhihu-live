@@ -3,8 +3,21 @@ import SvgIcon from '@/components/SvgIcon.vue'
 import HelloWorld from '@/components/HelloWorld.vue'
 import TestForm from '@/components/TestForm.vue'
 import { useI18n } from 'vue-i18n'
+import { usePagination, useRequest } from 'vue-request'
+import { http } from '@/api/request'
 
 const { t: $t } = useI18n()
+const { data, run, loading } = useRequest(() => http.get('/test'))
+const {
+  data: pageData,
+  current,
+  loading: pageLoading,
+  pageSize,
+  run: pageRun,
+} = usePagination((params: { current: number; pageSize: number }) => {
+  return http.get('/test', { params })
+})
+pageRun({ current: current.value, pageSize: pageSize.value })
 </script>
 
 <template>
@@ -27,6 +40,22 @@ const { t: $t } = useI18n()
         class="logo vue"
       />
     </a>
+  </div>
+  <div>
+    <div @click="() => run()">send</div>
+    <div>req data</div>
+    {{ data }}
+    <div>req loading</div>
+    {{ loading }}
+  </div>
+  <div>
+    <div @click="() => current++">send</div>
+    <div>req curr page</div>
+    {{ current }}
+    <div>req data</div>
+    {{ pageData }}
+    <div>req loading</div>
+    {{ pageLoading }}
   </div>
   <span v-t="'home.title'"></span>
   <span>{{ $t('home.title') }}</span>
