@@ -11,6 +11,7 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 // import { ArcoResolver } from 'unplugin-vue-components/resolvers'
 import { vitePluginForArco } from '@arco-plugins/vite-vue'
 import legacy from '@vitejs/plugin-legacy'
+import packageConfig from './package.json'
 
 const styleVariablePath = normalizePath(path.resolve(__dirname, './src/variable.scss'))
 
@@ -36,16 +37,7 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: [
-      'vue',
-      'vue-router',
-      '@arco-design/web-vue',
-      'pinia',
-      '@fingerprintjs/fingerprintjs',
-      '@vueuse/core',
-      'mitt',
-      'simdjson',
-    ],
+    include: [...Object.keys(packageConfig.dependencies), '@arco-design/web-vue'],
   },
   resolve: {
     alias: {
