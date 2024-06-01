@@ -18,6 +18,7 @@ const styleVariablePath = normalizePath(path.resolve(__dirname, './src/variable.
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/teach-zhihu-live/',
   plugins: [
     vue(),
     viteImagemin({
