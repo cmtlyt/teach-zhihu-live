@@ -2,7 +2,7 @@ import { defineConfig, normalizePath } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import viteImagemin from '@vheemstra/vite-plugin-imagemin'
-import imageminWebp from 'imagemin-webp'
+// import imageminWebp from 'imagemin-webp'
 import imageminSvg from 'imagemin-svgo'
 import imageminGif2webp from 'imagemin-gif2webp'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
@@ -22,7 +22,13 @@ export default defineConfig({
     vue(),
     viteImagemin({
       plugins: { svg: imageminSvg() },
-      makeWebp: { plugins: { jpg: imageminWebp(), png: imageminWebp(), gif: imageminGif2webp() } },
+      makeWebp: {
+        plugins: {
+          // jpg: imageminWebp(),
+          // png: imageminWebp(),
+          gif: imageminGif2webp(),
+        },
+      },
     }),
     createSvgIconsPlugin({ iconDirs: [normalizePath(path.join(__dirname, './src/assets/icons'))] }),
     // AutoImport({ resolvers: [ArcoResolver()] }),
