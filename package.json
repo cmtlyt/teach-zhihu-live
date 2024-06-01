@@ -50,6 +50,7 @@
     "husky": "^8.0.3",
     "imagemin-gif2webp": "^3.0.0",
     "imagemin-svgo": "^10.0.1",
+    "lint-staged": "^15.2.5",
     "postcss": "^8.4.32",
     "postcss-preset-env": "^9.3.0",
     "postcss-pxtorem": "^6.0.0",
@@ -60,5 +61,10 @@
     "vite": "^5.0.8",
     "vite-plugin-svg-icons": "^2.0.1",
     "vue-tsc": "^1.8.25"
+  },
+  "lint-staged": {
+    "src/*.{js,jsx,tsx,ts}": [
+      "pnpm run lint"
+    ]
   }
 }
