@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+
 import 'virtual:svg-icons-register'
 import './tailwind.css'
 import './global.scss'
