@@ -14,7 +14,7 @@
                     </div>
                     <div class="bottom">
                         <ul>
-                            <li>下载知乎App</li>
+                            <li>下载知乎</li>
                             <li>开通机构号</li>
                             <li>无障碍模式</li>
                         </ul>
@@ -64,9 +64,9 @@
                     </div>
                     <div class="bottom">
                         <ul>
-                            <li><img src="../assets/login-icon/QQ.svg" alt=""></li>
-                            <li><img src="../assets/login-icon/wx.svg" alt=""></li>
-                            <li><img src="../assets/login-icon/weibo.svg" alt=""></li>
+                            <li><img src="../assets/icons/QQ.svg" alt=""></li>
+                            <li><img src="../assets/icons/wx.svg" alt=""></li>
+                            <li><img src="../assets/icons/weibo.svg" alt=""></li>
                         </ul>
                         <span>
                             未注册手机验证后自动登录，注册即代表同意《知乎协议》《隐私保护指引》
