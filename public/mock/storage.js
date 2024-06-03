@@ -55,7 +55,6 @@ const { storage, initStorage } = (() => {
     const [verify, error, _data] = verifySchema(key, value)
     if (!verify) throw new Error(error)
     data.push(_data)
-    console.debug('data', data)
     return cache.put(urlId(key), createCacheData(data))
   }
 

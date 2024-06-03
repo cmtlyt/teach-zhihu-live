@@ -2,7 +2,6 @@
 const mockHandler = {
   post: {
     async register({ data }) {
-      console.debug(data)
       const [user] = await storage.find('user', {
         matcher: (item) => item.name === data.name,
       })
