@@ -28,7 +28,7 @@
                 <li role="button" @click="showPasswordLogin">密码登录</li>
               </ul>
             </div>
-            <div id="CodeLogin" v-show="CodeLogin">
+            <div id="CodeLogin" v-if="isCodeLogin">
               <div>
                 <button id="choseLocation">中国+86</button>
                 <input type="text" placeholder="请输入手机号">
@@ -44,7 +44,7 @@
               </div>
               <button id="loginorreg">登录/注册</button>
             </div>
-            <div id="PasswordLogin" v-show="PasswordLogin">
+            <div id="PasswordLogin" v-else>
               <div>
                 <input v-model="loginInfo.name" type="text" placeholder="手机号或邮箱">
               </div>
@@ -89,8 +89,9 @@ import { ref, reactive } from 'vue';
 import SvgIcon from '@/components/SvgIcon.vue';
 import { login, register } from '@/api/user';
 
-let CodeLogin = ref(true);
-let PasswordLogin = ref(false);
+// 登录模式只有两种不需要两个变量，一个就好了，不要声明太多，然后变量小写字母开头，类才是大写字母开头，好的，这个reactive是 对象的时候用的是嘛，ref就是普通的数据类型的时候用吗，差不多。好的，我看register注释掉了，之前为什么点了那个注册按钮，还有数据可以用来登录，，就是本来不是按钮绑定了注册方法吗，然后改成登录方法了，为什么刷新了网页，数据还有，不然我给你mock什么接口。。。不就是用来存数据的吗，这么好吗，不用数据库都可以存储数据了，本地的，没法联机，我mock了整个数据库。。。晕，什么是mock了整个数据库，就是在前端实现了数据库的基本操作，这样，那我是不是只要在api文件夹里面写功能就可以达成增删改查的效果了，那个里面是接口，实际处理在mock文件夹里面，不过那个代码你不需要管，需要啥接口跟我说就好了，好
+// 你先不要去看那个里面的代码，很复杂，容易头痛，好的，然后你看看什么要删，删了之后提交，新分支的home页面到时候提交了，就创建一个新的pr，好的，我之前写的那个是不是就没了，就是我写了一个导航栏
+const isCodeLogin = ref(true)
 const loginInfo = reactive({ name: '', password: '' })
 
 function submit() {
@@ -99,22 +100,10 @@ function submit() {
   })
 }
 const showCodeLogin = () => {
-  console.log(1);
-
-  CodeLogin.value = true;
-  PasswordLogin.value = false;
-  // TODO: 所有打印提交的时候都要删ok
-  // 每个需求在各自分支写，比如你要写首页的时候直接从main创建新分支就好了
-  // 不要把这个分支合并过去，我到时候要是合并你代码的话会合并的，从main创建分支是什么，我要先merge main 然后再checkout吗
-  console.log(CodeLogin);
-  console.log(PasswordLogin);
+  isCodeLogin.value = true
 }
 const showPasswordLogin = () => {
-  console.log(2);
-  CodeLogin.value = false;
-  PasswordLogin.value = true;
-  console.log(CodeLogin);
-  console.log(PasswordLogin);
+  isCodeLogin.value = false;
 }
 </script>
 
