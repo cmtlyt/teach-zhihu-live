@@ -12,7 +12,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['.eslintrc.{js,cjs}', 'src/mock/*.js'],
+      files: ['.eslintrc.{js,cjs}', 'public/**/*.js'],
       parserOptions: {
         project: false,
       },
