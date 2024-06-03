@@ -12,13 +12,9 @@ module.exports = {
   },
   overrides: [
     {
-      env: {
-        node: true,
-        browser: true,
-      },
-      files: ['.eslintrc.{js,cjs}'],
+      files: ['.eslintrc.{js,cjs}', 'src/mock/*.js'],
       parserOptions: {
-        sourceType: 'script',
+        project: false,
       },
     },
   ],
@@ -26,7 +22,6 @@ module.exports = {
   rules: {
     'prettier/prettier': 'error',
     'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     '@typescript-eslint/ban-ts-comment': 'off',
     'no-undef': 'off',
