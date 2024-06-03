@@ -14,7 +14,7 @@
           </div>
           <div class="bottom">
             <ul>
-              <li>下载知乎</li>
+              <li>下载知乎App</li>
               <li>开通机构号</li>
               <li>无障碍模式</li>
             </ul>
@@ -28,7 +28,7 @@
                 <li role="button" @click="showPasswordLogin">密码登录</li>
               </ul>
             </div>
-            <div id="CodeLogin" v-show="CodeLogin">
+            <div id="CodeLogin" v-if="isCodeLogin">
               <div>
                 <button id="choseLocation">中国+86</button>
                 <input type="text" placeholder="请输入手机号">
@@ -44,12 +44,12 @@
               </div>
               <button id="loginorreg">登录/注册</button>
             </div>
-            <div id="PasswordLogin" v-show="PasswordLogin">
+            <div id="PasswordLogin" v-else>
               <div>
-                <input type="text" placeholder="手机号或邮箱">
+                <input v-model="loginInfo.name" type="text" placeholder="手机号或邮箱">
               </div>
               <div>
-                <input type="text" placeholder="密码">
+                <input v-model="loginInfo.password" type="text" placeholder="密码">
               </div>
               <div style="border:none;display:block">
                 <button id="overseasLogin">
@@ -59,14 +59,20 @@
                   忘记密码
                 </button>
               </div>
-              <button id="loginorreg">登录/注册</button>
+              <button id="loginorreg" @click="submit">登录/注册</button>
             </div>
           </div>
           <div class="bottom">
             <ul>
-              <li><img src="../assets/icons/QQ.svg" alt=""></li>
-              <li><img src="../assets/icons/wx.svg" alt=""></li>
-              <li><img src="../assets/icons/weibo.svg" alt=""></li>
+              <li>
+                <SvgIcon name="QQ" alt="" />
+              </li>
+              <li>
+                <SvgIcon name="wx" alt="" />
+              </li>
+              <li>
+                <SvgIcon name="weibo" alt="" />
+              </li>
             </ul>
             <span>
               未注册手机验证后自动登录，注册即代表同意《知乎协议》《隐私保护指引》
@@ -79,25 +85,24 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 
-let CodeLogin = ref(true);
-let PasswordLogin = ref(false);
+import SvgIcon from '@/components/SvgIcon.vue';
+import { login } from '@/api/user';
 
+const isCodeLogin = ref(true)
+const loginInfo = reactive({ name: '', password: '' })
+
+function submit() {
+  login(loginInfo).then(res => {
+    console.log(res)
+  })
+}
 const showCodeLogin = () => {
-  console.log(1);
-
-  CodeLogin.value = true;
-  PasswordLogin.value = false;
-  console.log(CodeLogin);
-  console.log(PasswordLogin);
+  isCodeLogin.value = true
 }
 const showPasswordLogin = () => {
-  console.log(2);
-  CodeLogin.value = false;
-  PasswordLogin.value = true;
-  console.log(CodeLogin);
-  console.log(PasswordLogin);
+  isCodeLogin.value = false;
 }
 </script>
 
@@ -117,7 +122,6 @@ input {
 
 .header {
   flex: 20%;
-  // background-color: purple;
   line-height: 136px;
 
   h2 {
