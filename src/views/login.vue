@@ -86,11 +86,10 @@
 
 <script lang="ts" setup>
 import { ref, reactive } from 'vue';
-import SvgIcon from '@/components/SvgIcon.vue';
-import { login, register } from '@/api/user';
 
-// 登录模式只有两种不需要两个变量，一个就好了，不要声明太多，然后变量小写字母开头，类才是大写字母开头，好的，这个reactive是 对象的时候用的是嘛，ref就是普通的数据类型的时候用吗，差不多。好的，我看register注释掉了，之前为什么点了那个注册按钮，还有数据可以用来登录，，就是本来不是按钮绑定了注册方法吗，然后改成登录方法了，为什么刷新了网页，数据还有，不然我给你mock什么接口。。。不就是用来存数据的吗，这么好吗，不用数据库都可以存储数据了，本地的，没法联机，我mock了整个数据库。。。晕，什么是mock了整个数据库，就是在前端实现了数据库的基本操作，这样，那我是不是只要在api文件夹里面写功能就可以达成增删改查的效果了，那个里面是接口，实际处理在mock文件夹里面，不过那个代码你不需要管，需要啥接口跟我说就好了，好
-// 你先不要去看那个里面的代码，很复杂，容易头痛，好的，然后你看看什么要删，删了之后提交，新分支的home页面到时候提交了，就创建一个新的pr，好的，我之前写的那个是不是就没了，就是我写了一个导航栏
+import SvgIcon from '@/components/SvgIcon.vue';
+import { login } from '@/api/user';
+
 const isCodeLogin = ref(true)
 const loginInfo = reactive({ name: '', password: '' })
 
@@ -123,7 +122,6 @@ input {
 
 .header {
   flex: 20%;
-  // background-color: purple;
   line-height: 136px;
 
   h2 {
