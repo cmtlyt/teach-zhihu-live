@@ -14,7 +14,6 @@ const { storage, initStorage } = (() => {
    */
   async function getData(key) {
     const tableId = getUrlId(key)
-    console.log(memoryCache)
     return (
       memoryCache.get(tableId.href) ||
       cache.match(tableId).then(async (response) => {
