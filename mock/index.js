@@ -26,6 +26,9 @@ const { getMockData, initMockSystem } = (() => {
   async function formatResponse(data) {
     if (typeof data === 'object' && typeof data.then === 'function') data = await data
     if (data instanceof Response) return data
+    if (typeof data === 'object' && data.__format) {
+      return new Response(JSON.stringify(data.data), { status: data.status || 200 })
+    }
     return new Response(JSON.stringify({ data, time: Date.now() }))
   }
 
