@@ -1,11 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 const { verifySchema, initSchema } = (() => {
-  function randomString(len = 16, pre = '') {
-    const str = pre + Math.random().toString(36).slice(2)
-    if (str.length >= len) return str.slice(0, len)
-    return str + randomString(len - str.length, str)
-  }
-
   const dbSchema = {
     user: {
       id: { type: 'string', default: () => randomString(16) },
@@ -19,6 +13,12 @@ const { verifySchema, initSchema } = (() => {
       updateTime: { type: 'date', default: () => new Date(), autoUpdate: true },
       avatar: { type: 'string' },
       isDeleted: { type: 'boolean', defualt: () => false },
+    },
+    session: {
+      id: { type: 'string', default: () => randomString(16) },
+      info: { type: 'string', required: true },
+      createTime: { type: 'date', default: () => new Date() },
+      expireTime: { type: 'date', default: () => new Date(new Date().getTime() + 1000 * 60 * 5) },
     },
   }
 

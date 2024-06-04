@@ -65,6 +65,12 @@ const { storage, initStorage } = (() => {
     })
   }
 
+  async function findById(key, id) {
+    const data = await getData(key)
+    if (!(id in data)) return null
+    return data[id]
+  }
+
   async function find(key, { id, matcher }) {
     const data = await getData(key)
     matcher = matcher || ((item) => item.id === id)
@@ -81,17 +87,19 @@ const { storage, initStorage } = (() => {
     const [verify, error, _data] = verifySchema(key, value)
     if (!verify) throw new Error(error)
     data[_data.id] = _data
-    return cache.put(getUrlId(key), createCacheData(data))
+    await cache.put(getUrlId(key), createCacheData(data))
+    return _data
   }
 
   async function update(key, value) {
     const data = await getData(key)
     const id = value.id
-    if (!(id in data)) throw new Error('not found')
+    if (!(id in data)) return insert(key, value)
     const [verify, error, _data] = verifySchema(key, value)
     if (!verify) throw new Error(error)
     data[id] = Object.assign(data[id], _data)
-    return cache.put(getUrlId(key), createCacheData(data))
+    await cache.put(getUrlId(key), createCacheData(data))
+    return _data
   }
 
   async function remove(key, value) {
@@ -106,7 +114,7 @@ const { storage, initStorage } = (() => {
     return cache.delete(getUrlId(key))
   }
 
-  const storage = { get, set, insert, update, remove, clear, find, init }
+  const storage = { get, set, insert, update, remove, clear, find, init, findById }
 
   async function initStorage() {
     return caches.open(CACHE_NAME).then(async (_cache) => (cache = _cache))
