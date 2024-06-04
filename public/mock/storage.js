@@ -5,18 +5,27 @@ const { storage, initStorage } = (() => {
   let cache = null
   const memoryCache = new Map()
 
-  function urlId(key) {
+  function getUrlId(key) {
     return new URL(`${STORAGE_KEY.href}${key}`)
   }
 
+  /**
+   * @returns {Promise<Record<string,Record<string,any>>>}
+   */
   async function getData(key) {
-    const tableId = urlId(key)
+    const tableId = getUrlId(key)
     return (
       memoryCache.get(tableId.href) ||
       cache.match(tableId).then(async (response) => {
         if (response) {
           const data = await response.json()
-          memoryCache.set(tableId.href, data)
+          let cacheData
+          if (getType(data) === 'array') {
+            cacheData = {}
+            data.forEach((item) => (cacheData[item.id] = item))
+            init(tableId.href, cacheData)
+          }
+          memoryCache.set(tableId.href, cacheData || data)
           return data
         }
         return null
@@ -33,51 +42,68 @@ const { storage, initStorage } = (() => {
   }
 
   async function set(key, value) {
-    return cache.put(urlId(key), createCacheData(value))
+    return cache.put(getUrlId(key), createCacheData(value))
   }
 
   async function init(key, value) {
-    return cache.keys().then((keys) => {
-      if (!keys.some((item) => item.url === urlId(key).href)) {
-        return cache.put(urlId(key), createCacheData(value))
+    const valueType = getType(value)
+    if (!['object', 'array'].includes(valueType)) return
+    return cache.keys().then(async (keys) => {
+      const urlId = getUrlId(key)
+      const cacheId = keys.find((item) => item.url === urlId.href)
+      if (!cacheId) return cache.put(urlId, createCacheData(value))
+      const data = await (await cache.match(cacheId)).json()
+      if (getType(data) === valueType) return
+      let newData
+      if (valueType === 'object') {
+        newData = Object.assign({}, value)
+        data.forEach((item) => (newData[item.id] = item))
+      } else {
+        newData = [...value, ...Object.keys(data).map((item) => data[item])]
       }
+      return cache.put(urlId, createCacheData(newData))
     })
   }
 
   async function find(key, { id, matcher }) {
     const data = await getData(key)
     matcher = matcher || ((item) => item.id === id)
-    return data.filter(matcher)
+    const result = []
+    for (const key in data) {
+      const item = data[key]
+      if (matcher(item)) result.push(item)
+    }
+    return result
   }
 
   async function insert(key, value) {
     const data = await getData(key)
     const [verify, error, _data] = verifySchema(key, value)
     if (!verify) throw new Error(error)
-    data.push(_data)
-    return cache.put(urlId(key), createCacheData(data))
+    data[_data.id] = _data
+    return cache.put(getUrlId(key), createCacheData(data))
   }
 
   async function update(key, value) {
     const data = await getData(key)
-    const index = data.findIndex((item) => item.id === value.id)
-    if (index === -1) throw new Error('not found')
+    const id = value.id
+    if (!(id in data)) throw new Error('not found')
     const [verify, error, _data] = verifySchema(key, value)
     if (!verify) throw new Error(error)
-    data[index] = Object.assign(data[index], _data)
-    return cache.put(urlId(key), createCacheData(data))
+    data[id] = Object.assign(data[id], _data)
+    return cache.put(getUrlId(key), createCacheData(data))
   }
 
   async function remove(key, value) {
     const data = await getData(key)
-    const index = data.findIndex((item) => item.id === value.id)
-    if (index === -1) return
-    data.splice(index, 1)
-    return cache.put(urlId(key), createCacheData(data))
+    const id = value.id
+    if (!(id in data)) return
+    delete data[id]
+    return cache.put(getUrlId(key), createCacheData(data))
   }
 
   async function clear(key) {
-    return cache.delete(urlId(key))
+    return cache.delete(getUrlId(key))
   }
 
   const storage = { get, set, insert, update, remove, clear, find, init }

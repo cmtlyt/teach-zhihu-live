@@ -6,10 +6,6 @@ const { verifySchema, initSchema } = (() => {
     return str + randomString(len - str.length, str)
   }
 
-  function getType(value) {
-    return Object.prototype.toString.call(value).slice(8, -1).toLowerCase()
-  }
-
   const dbSchema = {
     user: {
       id: { type: 'string', default: () => randomString(16) },
@@ -27,7 +23,7 @@ const { verifySchema, initSchema } = (() => {
   }
 
   async function initSchema() {
-    await Promise.all(Object.keys(dbSchema).map((dbName) => storage.init(dbName, [])))
+    await Promise.all(Object.keys(dbSchema).map((dbName) => storage.init(dbName, {})))
   }
 
   function verifySchema(dbName, data) {
