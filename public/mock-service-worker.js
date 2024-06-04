@@ -1,4 +1,4 @@
-importScripts('./mock/index.js', './mock/handler.js', './mock/storage.js', './mock/schema.js')
+importScripts('./mock/utils.js', './mock/index.js', './mock/handler.js', './mock/storage.js', './mock/schema.js')
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(initMockSystem())
