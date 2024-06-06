@@ -2,6 +2,7 @@
 import { RouterView } from 'vue-router'
 import { useRequestProvider } from 'vue-request'
 import { useNavigatorLanguage } from '@vueuse/core'
+
 import { setI18nLanguage } from '@/locales'
 
 const { language } = useNavigatorLanguage()

@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import SvgIcon from '@/components/SvgIcon.vue'
-import TestForm from '@/components/TestForm.vue'
 import { useI18n } from 'vue-i18n'
 import { usePagination, useRequest } from 'vue-request'
+
+import SvgIcon from '@/components/SvgIcon.vue'
+import TestForm from '@/components/TestForm.vue'
 import { http } from '@/api/request'
 
 const { t: $t } = useI18n()
@@ -16,28 +17,17 @@ const {
 } = usePagination((params: { current: number; pageSize: number }) => {
   return http.get('/test', { params })
 })
+console.debug('123')
 pageRun({ current: current.value, pageSize: pageSize.value })
 </script>
 
 <template>
   <div class="flex justify-center items-center">
-    <a
-      href="https://vitejs.dev"
-      target="_blank"
-    >
-      <SvgIcon
-        name="vite"
-        class="logo"
-      />
+    <a href="https://vitejs.dev" target="_blank">
+      <SvgIcon name="vite" class="logo" />
     </a>
-    <a
-      href="https://vuejs.org/"
-      target="_blank"
-    >
-      <SvgIcon
-        name="vue"
-        class="logo vue"
-      />
+    <a href="https://vuejs.org/" target="_blank">
+      <SvgIcon name="vue" class="logo vue" />
     </a>
   </div>
   <div>

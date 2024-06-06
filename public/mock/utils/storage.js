@@ -1,7 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { storage, initStorage } = (() => {
-  const CACHE_NAME = 'zhihu-live-v1'
-  const STORAGE_KEY = new URL(location.origin)
+  const STORAGE_KEY = new URL(ORIGIN)
   let cache = null
   const memoryCache = new Map()
 

@@ -8,7 +8,8 @@ const { verifySchema, initSchema } = (() => {
       age: { type: 'number' },
       sex: { type: 'string' },
       email: { type: 'string' },
-      phone: { type: 'string' },
+      phone: { type: 'string', verify: (value) => PHONE_REG.test(value) },
+      role: { type: 'number', defautl: () => 0 },
       createTime: { type: 'date', default: () => new Date() },
       updateTime: { type: 'date', default: () => new Date(), autoUpdate: true },
       avatar: { type: 'string' },
@@ -39,6 +40,8 @@ const { verifySchema, initSchema } = (() => {
       // 类型验证
       if (tbSchema[key].required && getType(newData[key]) !== tbSchema[key].type)
         return [false, `字段${key}类型错误, 期望${tbSchema[key].type}, 实际${getType(newData[key])}`]
+      if (tbSchema[key].verify && newData[key] && !tbSchema[key].verify(newData[key]))
+        return [false, `字段${key}验证失败`]
       // 暂存自动更新
       if (tbSchema[key].autoUpdate) autoUpdateField.push(key)
     }
