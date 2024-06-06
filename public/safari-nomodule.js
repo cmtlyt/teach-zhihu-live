@@ -1,3 +1,4 @@
+/* eslint-disable no-var */
 // UPDATE: In 2023, you should probably stop using this! The narrow version of Safari that
 // does not support `nomodule` is probably not being used anywhere. The code below is left
 // for posterity.

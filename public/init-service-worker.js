@@ -1,12 +1,14 @@
 function initMock() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
-      .register('/teach-zhihu-live/mock-service-worker.js', { scope: '/teach-zhihu-live/' })
+      .register(`${window.__globalVariabels__.baseUrl}mock-service-worker.js`, {
+        scope: `${window.__globalVariabels__.baseUrl}`,
+      })
       .then((registration) => {
-        console.log('SW registered scope:', registration.scope)
+        console.debug('SW registered scope:', registration.scope)
       })
       .catch((registrationError) => {
-        console.log('SW registration failed:', registrationError)
+        console.debug('SW registration failed:', registrationError)
       })
   } else {
     console.warn('当前浏览器不支持serviceWorker')

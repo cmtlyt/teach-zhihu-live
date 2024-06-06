@@ -9,7 +9,7 @@
           <div class="top">
             <h3 class="one">打开知乎App</h3>
             <span class="two">在「我的页」右上角打开扫一扫</span>
-            <div class="img"><img src="" alt=""></div>
+            <div class="img"><img src="" alt="" /></div>
             <span class="three">其他扫码方式：微信</span>
           </div>
           <div class="bottom">
@@ -31,33 +31,27 @@
             <div id="CodeLogin" v-if="isCodeLogin">
               <div>
                 <button id="choseLocation">中国+86</button>
-                <input type="text" placeholder="请输入手机号">
+                <input type="text" placeholder="请输入手机号" />
               </div>
               <div>
-                <input type="text" placeholder="获取短信验证码">
+                <input type="text" placeholder="获取短信验证码" />
                 <button id="getCode">获取短信验证码</button>
               </div>
-              <div style="border:none;display:block">
-                <button id="getSpeechCode">
-                  获取语音验证码
-                </button>
+              <div style="border: none; display: block">
+                <button id="getSpeechCode">获取语音验证码</button>
               </div>
               <button id="loginorreg">登录/注册</button>
             </div>
             <div id="PasswordLogin" v-else>
               <div>
-                <input v-model="loginInfo.name" type="text" placeholder="手机号或邮箱">
+                <input v-model="loginInfo.name" type="text" placeholder="手机号或邮箱" />
               </div>
               <div>
-                <input v-model="loginInfo.password" type="text" placeholder="密码">
+                <input v-model="loginInfo.password" type="text" placeholder="密码" />
               </div>
-              <div style="border:none;display:block">
-                <button id="overseasLogin">
-                  海外手机登录
-                </button>
-                <button id="forgetP">
-                  忘记密码
-                </button>
+              <div style="border: none; display: block">
+                <button id="overseasLogin">海外手机登录</button>
+                <button id="forgetP">忘记密码</button>
               </div>
               <button id="loginorreg" @click="submit">登录/注册</button>
             </div>
@@ -74,9 +68,7 @@
                 <SvgIcon name="weibo" alt="" />
               </li>
             </ul>
-            <span>
-              未注册手机验证后自动登录，注册即代表同意《知乎协议》《隐私保护指引》
-            </span>
+            <span> 未注册手机验证后自动登录，注册即代表同意《知乎协议》《隐私保护指引》 </span>
           </div>
         </div>
       </div>
@@ -85,24 +77,24 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive } from 'vue';
+import { ref, reactive } from 'vue'
 
-import SvgIcon from '@/components/SvgIcon.vue';
-import { login } from '@/api/user';
+import SvgIcon from '@/components/SvgIcon.vue'
+import { login } from '@/api/user'
 
 const isCodeLogin = ref(true)
 const loginInfo = reactive({ name: '', password: '' })
 
 function submit() {
-  login(loginInfo).then(res => {
-    console.log(res)
+  login(loginInfo).then((res) => {
+    console.debug(res)
   })
 }
 const showCodeLogin = () => {
   isCodeLogin.value = true
 }
 const showPasswordLogin = () => {
-  isCodeLogin.value = false;
+  isCodeLogin.value = false
 }
 </script>
 
@@ -207,7 +199,6 @@ input {
 
     .bottom {
       flex: 40%;
-
     }
   }
 }
@@ -331,7 +322,6 @@ input {
 }
 
 .bottom {
-
   ul {
     display: flex;
     width: 70%;

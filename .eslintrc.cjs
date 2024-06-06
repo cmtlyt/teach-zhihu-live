@@ -3,23 +3,43 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier', 'plugin:prettier/recommended'],
-  parser: '@typescript-eslint/parser',
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+    'plugin:prettier/recommended',
+    'plugin:vue/essential',
+  ],
+  parser: 'vue-eslint-parser',
   parserOptions: {
+    parser: '@typescript-eslint/parser',
     project: 'tsconfig.json',
     tsconfigRootDir: __dirname,
     sourceType: 'module',
+    ecmaVersion: 12,
   },
   overrides: [
     {
-      files: ['.eslintrc.{js,cjs}', 'public/**/*.js'],
+      files: ['.eslintrc.{js,cjs}', 'public/**/*.js', 'vite.config.{js,ts}', 'plugins/**/*.{js,ts}'],
       parserOptions: {
         project: false,
       },
     },
+    {
+      files: ['src/**/*.vue'],
+      parserOptions: {
+        project: false,
+        extraFileExtensions: ['.vue'],
+      },
+    },
   ],
-  plugins: ['@typescript-eslint', 'import', 'prettier'],
+  plugins: ['@typescript-eslint', 'import', 'prettier', 'vue'],
   rules: {
+    'vue/multi-word-component-names': 'off',
+    'no-console': ['error', { allow: ['warn', 'error', 'debug'] }],
+    'no-debugger': 'error',
+    'no-alert': 'error',
+    'vue/no-multiple-template-root': 'off',
     'prettier/prettier': 'error',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],

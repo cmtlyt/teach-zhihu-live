@@ -32,11 +32,19 @@ const { getMockData, initMockSystem } = (() => {
     return new Response(JSON.stringify({ data, time: Date.now() }))
   }
 
+  async function $__call(controller, ctx) {
+    const handler = getHandlerFormController(controller)
+    if (!handler) throw new Error(`未找到${controller}控制器`)
+    return handler(ctx)
+  }
+
   async function formatRequest(method, uri, request) {
     const data = method === 'get' ? {} : await request.json()
     const query = {}
+    const headers = {}
+    request.headers.entries().forEach(([key, value]) => (headers[key] = value))
     uri.searchParams.forEach((value, key) => (query[key] = value))
-    return { data, query }
+    return { data, query, headers, $__call }
   }
 
   async function getMockData(splitPath, uri, request) {
