@@ -9,11 +9,8 @@ const mockHandler = {
         return { __format: true, status: 400, data: { message: '用户名已存在' } }
       }
       try {
-        const result = await storage.insert('user', data)
-        return {
-          success: true,
-          message: result,
-        }
+        const user = await storage.insert('user', data)
+        return { success: true, ...(await getTokens({ id: user.id, role: user.role })) }
       } catch (e) {
         return { __format: true, status: 500, data: { message: e.message } }
       }
@@ -23,7 +20,7 @@ const mockHandler = {
         matcher: (item) => item.name === data.name && item.password === data.password,
       })
       if (!user) return { __format: true, status: 400, data: { message: '用户名或密码错误' } }
-      return { success: true, user }
+      return { success: true, ...(await getTokens({ id: user.id, role: user.role })) }
     },
     async checkCaptcha({ data }) {
       const { captcha, captchaId } = data
@@ -51,5 +48,16 @@ const mockHandler = {
       })
       return { success: true, captchaId: sectionInfo.id, captcha }
     },
+    async refresh({ query }) {
+      if (!query.refreshToken) return { __format: true, status: 400, data: { message: 'refreshToken不能为空' } }
+      const [verify, errorMessage, payload] = await verifyToken(query.refreshToken, 'refresh')
+      if (!verify) return { __format: true, status: 401, data: { message: errorMessage } }
+      const { isRefresh, data } = payload
+      if (!isRefresh) return { __format: true, status: 401, data: { message: 'refreshToken无效' } }
+      return { success: true, ...getTokens(data) }
+    },
+    test: checkAuthentication(async ({ tokenData }) => {
+      return { success: true, ...tokenData }
+    }),
   },
 }
