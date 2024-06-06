@@ -78,17 +78,26 @@
 
 <script lang="ts" setup>
 import { ref, reactive } from 'vue'
+import { Message } from '@arco-design/web-vue'
+import { useRouter } from 'vue-router'
 
 import SvgIcon from '@/components/SvgIcon.vue'
 import { login } from '@/api/user'
 
+const router = useRouter()
 const isCodeLogin = ref(true)
 const loginInfo = reactive({ name: '', password: '' })
 
 function submit() {
-  login(loginInfo).then((res) => {
-    console.debug(res)
-  })
+  login(loginInfo)
+    .then((res) => {
+      if (res.data.success) {
+        Message.success({ content: '登录成功', onClose: () => router.push('/') })
+      }
+    })
+    .catch(([res]) => {
+      Message.error(res.message)
+    })
 }
 const showCodeLogin = () => {
   isCodeLogin.value = true

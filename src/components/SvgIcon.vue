@@ -5,10 +5,7 @@ const symbolId = `#${prefix}-${name}`
 
 <template>
   <svg aria-hidden>
-    <use
-      :href="symbolId"
-      fill="currentColor"
-    ></use>
+    <use :href="symbolId" fill="currentColor"></use>
   </svg>
 </template>
 

@@ -54,7 +54,7 @@ const mockHandler = {
       if (!verify) return { __format: true, status: 401, data: { message: errorMessage } }
       const { isRefresh, data } = payload
       if (!isRefresh) return { __format: true, status: 401, data: { message: 'refreshToken无效' } }
-      return { success: true, ...getTokens(data) }
+      return { success: true, ...(await getTokens(data)) }
     },
     test: checkAuthentication(async ({ tokenData }) => {
       return { success: true, ...tokenData }
