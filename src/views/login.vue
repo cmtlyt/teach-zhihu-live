@@ -42,7 +42,7 @@
                   获取语音验证码
                 </button>
               </div>
-              <button id="loginorreg">登录/注册</button>
+              <button id="loginorreg">登录</button>
             </div>
             <div id="PasswordLogin" v-else>
               <div>
@@ -107,10 +107,15 @@ const showPasswordLogin = () => {
 </script>
 
 <style lang="scss">
+
 input {
   outline: none;
 }
 
+.bg {
+  background-color: rgb(174, 199, 221);
+  height: 100vh;
+}
 .box {
   display: flex;
   flex-direction: column;
@@ -212,10 +217,6 @@ input {
   }
 }
 
-.bg {
-  background-color: rgb(174, 199, 221);
-  height: 100vh;
-}
 
 .rightmain {
   font-size: 14px;
