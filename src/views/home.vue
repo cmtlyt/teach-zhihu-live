@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import NavigationTop from "../components/navigationTop.vue";
+import NavigationTop from '../components/NavigationTop.vue'
 </script>
 
 <template>

@@ -4,53 +4,69 @@
       <svgIcon name="logo"></svgIcon>
     </div>
     <div class="container">
-      <div style="flex-basis: 15%;"></div>
-      <div id="user">
-        <div class="input-box"><input type="text" placeholder="请输入用户名"></div>
-        <div class="msg"><span>输入有误</span></div>
-      </div>
-      <div id="pwd">
-        <div class="input-box"><input type="password" placeholder="请输入密码">
-          <div class="icon-box"></div>
-        </div>
-        <div class="msg"><span>输入有误</span></div>
-      </div>
-      <div id="repwd">
-        <div class="input-box"><input type="password" placeholder="请重复输入密码">
-          <div class="icon-box">
-            <SvgIcon name="unshow"></SvgIcon>
-          </div>
-        </div>
-        <div class="msg"><span>输入有误</span></div>
-      </div>
-      <div class="btn-box">
-        <button class="reg-btn">
-          注册
-        </button>
-      </div>
-
+      <div style="flex-basis: 15%"></div>
+      <a-form class="form-wrapper" :rules="rules" :model="form" layout="vertical" @submit="handleSubmit">
+        <a-form-item field="name" label="用户名" validate-trigger="blur">
+          <a-input v-model="form.name" placeholder="请输入用户名" />
+        </a-form-item>
+        <a-form-item field="password" label="密码" validate-trigger="blur">
+          <a-input-password v-model="form.password" placeholder="请输入密码" />
+        </a-form-item>
+        <a-form-item field="password2" label="确认密码" validate-trigger="blur">
+          <a-input-password v-model="form.password2" placeholder="请再次输入密码" />
+        </a-form-item>
+        <div class="gap"></div>
+        <a-form-item class="btn-box">
+          <a-button class="reg-btn" type="primary" html-type="submit">注册</a-button></a-form-item
+        >
+      </a-form>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue';
+import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
+import { Message } from '@arco-design/web-vue'
 
-import { register } from '../api/user';
-import SvgIcon from '@/components/SvgIcon.vue';
+import { register } from '../api/user'
 
-const RegInfo = reactive({ name: '', password: '' })
+import SvgIcon from '@/components/SvgIcon.vue'
 
-// function submit() {
-//   register(RegInfo).then(res => {
-//     console.log(res)
-//   })
-// }
+const router = useRouter()
+
+const form = reactive({ name: '', password: '', password2: '' })
+
+const rules = {
+  name: [{ required: true, message: '用户名不能为空' }],
+  password: [{ required: true, message: '密码不能为空' }],
+  password2: [
+    { required: true, message: '密码不能为空' },
+    {
+      validator: (value: string, cb: any) => {
+        if (value !== form.password) cb('两次密码不同')
+        else cb()
+      },
+    },
+  ],
+}
+
+function handleSubmit() {
+  register(form)
+    .then((res) => {
+      if (res.data.success) {
+        Message.success({ content: '注册成功', onClose: () => router.push('/') })
+      }
+    })
+    .catch(([res]) => {
+      Message.error(res.message)
+    })
+}
 </script>
-//
-<style lang="scss">
-input {
-  outline: none;
+
+<style lang="scss" scoped>
+.form-wrapper {
+  flex: 1;
 }
 
 .bg {
@@ -77,116 +93,59 @@ input {
   display: flex;
   flex-direction: column;
   border-radius: 10px;
+  padding: 0 4rem;
 }
 
-#user {
-  flex-basis: 20%;
-  width: 80%;
-  margin: 0 auto;
+.gap {
+  flex: 1;
+}
+
+.field {
   display: flex;
   flex-direction: column;
+  height: 15%;
 
-  .input-box {
-    flex-basis: 80%;
-    font-size: 18px;
-    color: #666;
-
-    input {
-      line-height: 100%;
-      height: 100%;
-      width: 100%;
-      padding-left: 21px;
-      border-bottom: 1px solid #ccc;
-    }
+  input {
+    border-bottom: 1px solid #000;
+    width: 100%;
+    padding: 1rem 0;
+    margin-bottom: 0.5em;
+    flex: 1;
   }
 
   .msg {
     color: red;
-    margin-left: 10px;
-  }
-}
-
-#pwd {
-  flex-basis: 20%;
-  width: 80%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-
-  .SvgIcon {
-    width: 30px;
   }
 
   .input-box {
-    flex-basis: 80%;
-    font-size: 18px;
-    color: #666;
-
-    input {
-      line-height: 100%;
-      height: 100%;
-      width: 100%;
-      padding-left: 21px;
-      border-bottom: 1px solid #ccc;
-    }
-  }
-
-  .msg {
-    color: red;
-    margin-left: 10px;
-  }
-}
-
-
-#repwd {
-  flex-basis: 20%;
-  width: 80%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-
-  .input-box {
-    flex-basis: 80%;
-    font-size: 18px;
-    color: #666;
-
-    input {
-      display: inline-block;
-      line-height: 100%;
-      height: 100%;
-      width: 90%;
-      padding-left: 21px;
-      border-bottom: 1px solid #ccc;
-    }
+    display: flex;
+    align-items: center;
+    height: 100%;
 
     .icon-box {
-      display: inline-block;
-      height: 100%;
-      width: 10%;
+      margin-left: 1rem;
+      height: 20px;
+      width: 20px;
     }
-  }
-
-  .msg {
-    color: red;
-    margin-left: 10px;
   }
 }
 
 .btn-box {
-  flex-basis: 30%;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+
+  :deep(.arco-form-item-content) {
+    justify-content: center;
+  }
 
   .reg-btn {
     width: 60%;
     height: 40px;
     line-height: 40px;
     text-align: center;
-    margin-top: 22px;
-    margin-left: 75px;
     border-radius: 12px;
-    background-color: rgb(73, 55, 235);
-    color: white;
     font-size: 16px;
   }
-
 }
 </style>

@@ -29,10 +29,12 @@ instance.interceptors.response.use(
     return response.data
   },
   async (error) => {
-    console.error('响应拦截器 - 收到错误响应:', error)
     const { config, response } = error
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _reject) => {
+      const reject = (error: any) => {
+        _reject([error.response.data, error])
+      }
       if ((response.status === 401 || config.url === REFRESH_PATH) && refreshCount < 3) {
         ++refreshCount
         instance
@@ -40,7 +42,7 @@ instance.interceptors.response.use(
           .then((res) => {
             refreshCount = 0
             localStorage.setItem(ACCESS_TOKEN_KEY, res.data.accessToken)
-            localStorage.setItem(REFRESH_TOKEN_KEY, res.data.refreshToken)
+            if (res.data?.refreshToken) localStorage.setItem(REFRESH_TOKEN_KEY, res.data.refreshToken)
             instance(config).then(resolve, reject)
           }, reject)
       } else {

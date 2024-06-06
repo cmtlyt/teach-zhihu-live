@@ -4,7 +4,7 @@ import { reactive, ref } from 'vue'
 const formRef = ref()
 
 const handleSubmit = ({ values, errors }: { values: any; errors: any }) => {
-  console.log('values:', values, '\nerrors:', errors)
+  console.debug('values:', values, '\nerrors:', errors)
 }
 
 const form = reactive({
@@ -98,21 +98,9 @@ const treeData = [
 </script>
 
 <template>
-  <a-form
-    ref="formRef"
-    :size="form.size"
-    :model="form"
-    :style="{ width: '600px' }"
-    @submit="handleSubmit"
-  >
-    <a-form-item
-      field="size"
-      label="Form Size"
-    >
-      <a-radio-group
-        v-model="form.size"
-        type="button"
-      >
+  <a-form ref="formRef" :size="form.size" :model="form" :style="{ width: '600px' }" @submit="handleSubmit">
+    <a-form-item field="size" label="Form Size">
+      <a-radio-group v-model="form.size" type="button">
         <a-radio value="mini">Mini</a-radio>
         <a-radio value="small">Small</a-radio>
         <a-radio value="medium">Medium</a-radio>
@@ -128,10 +116,7 @@ const treeData = [
       ]"
       :validate-trigger="['change', 'input']"
     >
-      <a-input
-        v-model="form.name"
-        placeholder="please enter your username..."
-      />
+      <a-input v-model="form.name" placeholder="please enter your username..." />
     </a-form-item>
     <a-form-item
       field="age"
@@ -141,37 +126,17 @@ const treeData = [
         { type: 'number', max: 200, message: 'age is max than 200' },
       ]"
     >
-      <a-input-number
-        v-model="form.age"
-        placeholder="please enter your age..."
-      />
+      <a-input-number v-model="form.age" placeholder="please enter your age..." />
     </a-form-item>
-    <a-form-item
-      field="section"
-      label="Section"
-      :rules="[{ match: /section one/, message: 'must select one' }]"
-    >
-      <a-select
-        v-model="form.section"
-        placeholder="Please select ..."
-        allow-clear
-      >
+    <a-form-item field="section" label="Section" :rules="[{ match: /section one/, message: 'must select one' }]">
+      <a-select v-model="form.section" placeholder="Please select ..." allow-clear>
         <a-option value="section one">Section One</a-option>
         <a-option value="section two">Section Two</a-option>
         <a-option value="section three">Section Three</a-option>
       </a-select>
     </a-form-item>
-    <a-form-item
-      field="province"
-      label="Province"
-      :rules="[{ required: true, message: 'province is required' }]"
-    >
-      <a-cascader
-        v-model="form.province"
-        :options="options"
-        placeholder="Please select ..."
-        allow-clear
-      />
+    <a-form-item field="province" label="Province" :rules="[{ required: true, message: 'province is required' }]">
+      <a-cascader v-model="form.province" :options="options" placeholder="Please select ..." allow-clear />
     </a-form-item>
     <a-form-item
       field="options"
@@ -185,83 +150,36 @@ const treeData = [
         <a-checkbox value="option four">Option Four</a-checkbox>
       </a-checkbox-group>
     </a-form-item>
-    <a-form-item
-      field="date"
-      label="Date"
-    >
-      <a-date-picker
-        v-model="form.date"
-        placeholder="Please select ..."
-      />
+    <a-form-item field="date" label="Date">
+      <a-date-picker v-model="form.date" placeholder="Please select ..." />
     </a-form-item>
-    <a-form-item
-      field="time"
-      label="Time"
-    >
-      <a-time-picker
-        v-model="form.time"
-        placeholder="Please select ..."
-      />
+    <a-form-item field="time" label="Time">
+      <a-time-picker v-model="form.time" placeholder="Please select ..." />
     </a-form-item>
-    <a-form-item
-      field="radio"
-      label="Radio"
-      :rules="[{ match: /one/, message: 'must select one' }]"
-    >
+    <a-form-item field="radio" label="Radio" :rules="[{ match: /one/, message: 'must select one' }]">
       <a-radio-group v-model="form.radio">
         <a-radio value="radio one">Radio One</a-radio>
         <a-radio value="radio two">Radio Two</a-radio>
       </a-radio-group>
     </a-form-item>
-    <a-form-item
-      field="slider"
-      label="Slider"
-      :rules="[{ type: 'number', min: 5, message: 'slider is min than 5' }]"
-    >
-      <a-slider
-        v-model="form.slider"
-        :max="10"
-      />
+    <a-form-item field="slider" label="Slider" :rules="[{ type: 'number', min: 5, message: 'slider is min than 5' }]">
+      <a-slider v-model="form.slider" :max="10" />
     </a-form-item>
-    <a-form-item
-      field="score"
-      label="Score"
-    >
-      <a-rate
-        v-model="form.score"
-        allow-clear
-      />
+    <a-form-item field="score" label="Score">
+      <a-rate v-model="form.score" allow-clear />
     </a-form-item>
-    <a-form-item
-      field="switch"
-      label="Switch"
-      :rules="[{ type: 'boolean', true: true, message: 'must be true' }]"
-    >
+    <a-form-item field="switch" label="Switch" :rules="[{ type: 'boolean', true: true, message: 'must be true' }]">
       <a-switch v-model="form.switch" />
     </a-form-item>
-    <a-form-item
-      field="multiSelect"
-      label="Multiple Select"
-    >
-      <a-select
-        v-model="form.multiSelect"
-        placeholder="Please select ..."
-        multiple
-      >
+    <a-form-item field="multiSelect" label="Multiple Select">
+      <a-select v-model="form.multiSelect" placeholder="Please select ..." multiple>
         <a-option value="section one">Section One</a-option>
         <a-option value="section two">Section Two</a-option>
         <a-option value="section three">Section Three</a-option>
       </a-select>
     </a-form-item>
-    <a-form-item
-      field="treeSelect"
-      label="Tree Select"
-    >
-      <a-tree-select
-        :data="treeData"
-        v-model="form.treeSelect"
-        placeholder="Please select ..."
-      />
+    <a-form-item field="treeSelect" label="Tree Select">
+      <a-tree-select :data="treeData" v-model="form.treeSelect" placeholder="Please select ..." />
     </a-form-item>
     <a-form-item>
       <a-space>

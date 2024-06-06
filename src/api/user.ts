@@ -22,3 +22,24 @@ export async function login(data: LoginData) {
 export async function register(data: LoginData) {
   return http.post('/api/register', data).then(tokenHandler)
 }
+
+interface CaptchaData {
+  phone: string
+}
+
+export async function captcha(data: CaptchaData) {
+  return http.get('/api/captcha', { params: data })
+}
+
+interface CheckCaptchaData {
+  captcha: string
+  captchaId: string
+}
+
+export async function checkCaptcha(data: CheckCaptchaData) {
+  return http.post('/api/checkCaptcha', data)
+}
+
+export async function test() {
+  return http.get('/api/test')
+}
