@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import NavigationTop from '../components/NavigationTop.vue'
+import Navbar from '@/components/Navbar.vue'
 </script>
 
 <template>
-  <NavigationTop />
+  <Navbar />
 </template>
 
 <style scoped lang="scss"></style>

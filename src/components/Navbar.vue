@@ -1,13 +1,13 @@
 <template>
   <div class="navbox">
     <ul class="navlist">
-      <li class="one"><img src="../assets/icons/知乎.svg" alt="" /></li>
+      <li class="one"><SvgIcon name="知乎" /></li>
       <div style="clear: both"></div>
       <li class="two">
         <div role="button">首页</div>
         <div role="button">知乎知学堂</div>
         <div role="button">
-          <div><img src="../assets/icons/双四星.svg" alt="" /></div>
+          <div class="star"><SvgIcon name="双四星" /></div>
           <div style="margin: 0px">发现</div>
         </div>
         <div role="button">等你来答</div>
@@ -15,7 +15,7 @@
       <li class="three">
         <div class="searchbox">
           <input type="text" />
-          <div role="button"><img src="../assets/icons/search.svg" alt="" /></div>
+          <div class="search" role="button"><SvgIcon name="search" /></div>
         </div>
         <div class="questionbox" role="button">
           <div class="question">提问</div>
@@ -23,11 +23,11 @@
       </li>
       <li class="four">
         <div class="msg" role="button">
-          <div class="img"><img src="../assets/icons/消息.svg" alt="" /></div>
+          <div class="img"><SvgIcon name="消息" /></div>
           <div class="text"><span>消息</span></div>
         </div>
         <div class="tell" role="button">
-          <div class="img"><img src="../assets/icons/私信.svg" alt="" /></div>
+          <div class="img"><SvgIcon name="私信" /></div>
           <div class="text"><span>私信</span></div>
         </div>
         <div class="head" role="button">
@@ -38,9 +38,19 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import SvgIcon from '@/components/SvgIcon.vue'
+</script>
 
 <style scoped lang="scss">
+.star {
+  width: 26px;
+  height: 26px;
+}
+.search {
+  width: 18px;
+  height: 18px;
+}
 .navbox {
   width: 100vm;
   height: 52px;
@@ -98,6 +108,7 @@
         flex-basis: 80%;
         background-color: #f5f5f5;
         display: flex;
+        align-items: center;
         border: 1px solid #ddd;
 
         input {
@@ -150,6 +161,7 @@
         .img {
           margin-top: 5px;
           width: 24px;
+          height: 24px;
           float: right;
 
           img {
@@ -163,9 +175,10 @@
         display: inline-block;
         margin-left: 20px;
 
-        img {
+        .img {
           margin-top: 5px;
           width: 24px;
+          height: 24px;
           float: right;
 
           img {
