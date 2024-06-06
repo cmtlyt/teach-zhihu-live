@@ -11,9 +11,7 @@
       </div>
       <div id="pwd">
         <div class="input-box"><input type="password" placeholder="请输入密码">
-          <div class="icon-box">
-          </div>
-
+          <div class="icon-box"></div>
         </div>
         <div class="msg"><span>输入有误</span></div>
       </div>
@@ -49,7 +47,7 @@ const RegInfo = reactive({ name: '', password: '' })
 //   })
 // }
 </script>
-
+//
 <style lang="scss">
 input {
   outline: none;
@@ -160,9 +158,10 @@ input {
       padding-left: 21px;
       border-bottom: 1px solid #ccc;
     }
-    .icon-box{
+
+    .icon-box {
       display: inline-block;
-      height:100%;
+      height: 100%;
       width: 10%;
     }
   }

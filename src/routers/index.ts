@@ -7,6 +7,6 @@ const routes = [
 ]
 
 export const router = createRouter({
-  history: createWebHashHistory('/teach-zhihu-live/'),
+  history: createWebHashHistory(window.__globalVariabels__.baseUrl),
   routes,
 })

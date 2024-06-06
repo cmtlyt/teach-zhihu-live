@@ -1,6 +1,7 @@
+import path from 'path'
+
 import { defineConfig, normalizePath } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import path from 'path'
 import viteImagemin from '@vheemstra/vite-plugin-imagemin'
 // import imageminWebp from 'imagemin-webp'
 import imageminSvg from 'imagemin-svgo'
@@ -11,8 +12,10 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 // import { ArcoResolver } from 'unplugin-vue-components/resolvers'
 import { vitePluginForArco } from '@arco-plugins/vite-vue'
 import legacy from '@vitejs/plugin-legacy'
-import packageConfig from './package.json'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
+
+import packageConfig from './package.json'
+import { injectGlobalVariabel } from './plugins/injectGlobalVariabel'
 
 const styleVariablePath = normalizePath(path.resolve(__dirname, './src/variable.scss'))
 
@@ -37,6 +40,7 @@ export default defineConfig({
     vitePluginForArco({ style: 'css' }),
     legacy(),
     VueI18nPlugin({ include: normalizePath(path.resolve(__dirname, './src/locales/*.json')) }),
+    injectGlobalVariabel(),
   ],
   css: {
     preprocessorOptions: {
