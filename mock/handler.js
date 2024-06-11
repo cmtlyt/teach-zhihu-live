@@ -10,7 +10,7 @@ const mockHandler = {
       }
       try {
         const user = await storage.insert('user', data)
-        return { success: true, ...(await getTokens({ id: user.id, role: user.role })) }
+        return { success: true, ...(await getTokens({ id: user.id, permission: user.permission })) }
       } catch (e) {
         return { __format: true, status: 500, data: { message: e.message } }
       }
@@ -20,7 +20,7 @@ const mockHandler = {
         matcher: (item) => item.name === data.name && item.password === data.password,
       })
       if (!user) return { __format: true, status: 400, data: { message: '用户名或密码错误' } }
-      return { success: true, ...(await getTokens({ id: user.id, role: user.role })) }
+      return { success: true, ...(await getTokens({ id: user.id, permission: user.permission })) }
     },
     async checkCaptcha({ data }) {
       const { captcha, captchaId } = data
@@ -58,6 +58,13 @@ const mockHandler = {
     },
     test: checkAuthentication(async ({ tokenData }) => {
       return { success: true, ...tokenData }
+    }),
+    getUserInfo: checkAuthentication(async ({ tokenData }) => {
+      const { id } = tokenData
+      const user = await storage.findById('user', id)
+      if (!user) return { __format: true, status: 400, data: { message: '用户不存在' } }
+      if (user.isDeleted) return { __format: true, status: 400, data: { message: '用户已删除' } }
+      return { success: true, userInfo: formatDto('user', user, user.permission) }
     }),
   },
 }
