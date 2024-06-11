@@ -1,5 +1,6 @@
 import { http } from './request'
 
+import { useUserStore } from '@/stores'
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@/constant'
 
 interface LoginData {
@@ -12,6 +13,8 @@ function tokenHandler(res: any) {
   const { accessToken, refreshToken } = data
   localStorage.setItem(ACCESS_TOKEN_KEY, accessToken)
   localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken)
+  const userStore = useUserStore()
+  userStore.getUserInfo()
   return res
 }
 
@@ -40,6 +43,15 @@ export async function checkCaptcha(data: CheckCaptchaData) {
   return http.post('/api/checkCaptcha', data)
 }
 
-export async function test() {
-  return http.get('/api/test')
+export async function getUserInfo() {
+  return http.get<{
+    userInfo: {
+      age: number
+      avatar: string
+      email: string
+      name: string
+      phone: string
+      sex: string
+    }
+  }>('/api/getUserInfo')
 }

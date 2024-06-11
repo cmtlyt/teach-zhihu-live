@@ -1,19 +1,26 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-const { verifySchema, initSchema } = (() => {
+const { verifySchema, initSchema, formatDto } = (() => {
+  const { DB_SHOW_HIDDEN_FIELD } = PermissionMap
+
   const dbSchema = {
     user: {
-      id: { type: 'string', default: () => randomString(16) },
+      id: { type: 'string', default: () => randomString(16), permission: formatPermission(DB_SHOW_HIDDEN_FIELD) },
       name: { type: 'string', required: true },
-      password: { type: 'string', required: true },
+      password: { type: 'string', required: true, permission: formatPermission(DB_SHOW_HIDDEN_FIELD) },
       age: { type: 'number' },
       sex: { type: 'string' },
       email: { type: 'string' },
       phone: { type: 'string', verify: (value) => PHONE_REG.test(value) },
-      role: { type: 'number', defautl: () => 0 },
-      createTime: { type: 'date', default: () => new Date() },
-      updateTime: { type: 'date', default: () => new Date(), autoUpdate: true },
+      permission: { type: 'number', defautl: () => 0, permission: formatPermission(DB_SHOW_HIDDEN_FIELD) },
+      createTime: { type: 'date', default: () => new Date(), permission: formatPermission(DB_SHOW_HIDDEN_FIELD) },
+      updateTime: {
+        type: 'date',
+        default: () => new Date(),
+        autoUpdate: true,
+        permission: formatPermission(DB_SHOW_HIDDEN_FIELD),
+      },
       avatar: { type: 'string' },
-      isDeleted: { type: 'boolean', defualt: () => false },
+      isDeleted: { type: 'boolean', defualt: () => false, permission: formatPermission(DB_SHOW_HIDDEN_FIELD) },
     },
     session: {
       id: { type: 'string', default: () => randomString(16) },
@@ -25,6 +32,18 @@ const { verifySchema, initSchema } = (() => {
 
   async function initSchema() {
     await Promise.all(Object.keys(dbSchema).map((dbName) => storage.init(dbName, {})))
+  }
+
+  function getTypeDefaultValue(type) {
+    const typeMap = {
+      string: '',
+      number: 0,
+      boolean: false,
+      date: new Date(),
+      array: [],
+      object: {},
+    }
+    return typeMap[type]
   }
 
   function verifySchema(dbName, data) {
@@ -50,5 +69,16 @@ const { verifySchema, initSchema } = (() => {
     return [true, null, newData]
   }
 
-  return { verifySchema, initSchema }
+  function formatDto(schemaId, data, userPermission) {
+    const schema = dbSchema[schemaId]
+    if (!schema) return data
+    const newData = { ...data }
+    for (const key in schema) {
+      if (!checkPermission(userPermission, schema[key].permission)) delete newData[key]
+      else if (!newData[key]) newData[key] = getTypeDefaultValue(schema[key].type)
+    }
+    return newData
+  }
+
+  return { verifySchema, initSchema, formatDto }
 })()
