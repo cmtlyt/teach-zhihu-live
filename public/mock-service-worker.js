@@ -1,5 +1,6 @@
 importScripts(
   './mock/utils/jwt.js',
+  './mock/utils/permission.js',
   './mock/utils/middleware.js',
   './mock/utils/constant.js',
   './mock/utils/index.js',

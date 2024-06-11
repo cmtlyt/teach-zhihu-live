@@ -11,3 +11,13 @@ function checkAuthentication(callback) {
     return callback(Object.assign(props, { tokenData: payload }))
   }
 }
+
+function verifyUserPermission(callback, needPremission) {
+  return checkAuthentication(async (props) => {
+    const { tokenData } = props
+    const { premission: userPremission } = tokenData
+    if (checkPermission(userPremission, needPremission))
+      return { __format: true, status: 403, data: { message: '无权限' } }
+    return callback(props)
+  })
+}

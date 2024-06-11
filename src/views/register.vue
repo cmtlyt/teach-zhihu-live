@@ -1,7 +1,7 @@
 <template>
   <div class="bg">
     <div class="head">
-      <svgIcon name="logo"></svgIcon>
+      <SvgIcon name="logo" />
     </div>
     <div class="container">
       <div style="flex-basis: 15%"></div>
@@ -17,8 +17,8 @@
         </a-form-item>
         <div class="gap"></div>
         <a-form-item class="btn-box">
-          <a-button class="reg-btn" type="primary" html-type="submit">注册</a-button></a-form-item
-        >
+          <a-button class="reg-btn" type="primary" html-type="submit">注册</a-button>
+        </a-form-item>
       </a-form>
     </div>
   </div>
