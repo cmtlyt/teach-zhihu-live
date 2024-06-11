@@ -2,7 +2,8 @@
   <div class="bg">
     <div class="box">
       <div class="header">
-        <h2>知乎</h2>
+        <!-- <h2>知乎</h2> -->
+        <SvgIcon name="logo" alt="" />
       </div>
       <div class="main">
         <div class="leftmain">
@@ -14,7 +15,7 @@
           </div>
           <div class="bottom">
             <ul>
-              <li>下载知乎App</li>
+              <li>下载知乎</li>
               <li>开通机构号</li>
               <li>无障碍模式</li>
             </ul>
@@ -40,7 +41,7 @@
               <div style="border: none; display: block">
                 <button id="getSpeechCode">获取语音验证码</button>
               </div>
-              <button id="loginorreg">登录/注册</button>
+              <button id="login">登录</button>
             </div>
             <div id="PasswordLogin" v-else>
               <div>
@@ -50,10 +51,10 @@
                 <input v-model="loginInfo.password" type="text" placeholder="密码" />
               </div>
               <div style="border: none; display: block">
-                <button id="overseasLogin">海外手机登录</button>
+                <button id="reg" @click="reg">注册</button>
                 <button id="forgetP">忘记密码</button>
               </div>
-              <button id="loginorreg" @click="submit">登录/注册</button>
+              <button id="login" @click="submit">登录</button>
             </div>
           </div>
           <div class="bottom">
@@ -87,6 +88,10 @@ import { login } from '@/api/user'
 const router = useRouter()
 const isCodeLogin = ref(true)
 const loginInfo = reactive({ name: '', password: '' })
+
+function reg() {
+  router.push('/register')
+}
 
 function submit() {
   login(loginInfo)
@@ -125,12 +130,9 @@ input {
   flex: 20%;
   line-height: 136px;
 
-  h2 {
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bolder;
-    color: rgb(73, 55, 235);
-    font-size: 64px;
-    letter-spacing: 12px;
+  svg {
+    width: 200px;
+    margin: 0 auto;
   }
 }
 
@@ -213,7 +215,8 @@ input {
 }
 
 .bg {
-  background-color: rgb(174, 199, 221);
+  background-image: url('../assets/img/background.jpg');
+  background-size: 100vw 100vh;
   height: 100vh;
 }
 
@@ -274,7 +277,7 @@ input {
       }
     }
 
-    #loginorreg {
+    #login {
       width: 80%;
       background-color: rgb(73, 55, 235);
       color: white;
@@ -307,7 +310,7 @@ input {
         flex: 70%;
       }
 
-      #overseasLogin {
+      #reg {
         float: left;
         color: rgb(73, 55, 235);
       }
@@ -317,7 +320,7 @@ input {
       }
     }
 
-    #loginorreg {
+    #login {
       width: 80%;
       background-color: rgb(73, 55, 235);
       color: white;
@@ -344,10 +347,10 @@ input {
       height: 40px;
       line-height: 40px;
 
-      img {
-        width: 25px;
+      svg {
+        width: 30px;
         display: block;
-        margin: 8px auto;
+        margin: 0px auto;
       }
     }
   }
@@ -355,7 +358,7 @@ input {
   span {
     display: block;
     margin: 30px auto;
-    width: 80%;
+    width: 70%;
     color: #999;
   }
 }
