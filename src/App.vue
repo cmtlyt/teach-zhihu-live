@@ -4,6 +4,7 @@ import { useRequestProvider } from 'vue-request'
 import { useNavigatorLanguage } from '@vueuse/core'
 
 import { setI18nLanguage } from '@/locales'
+import { useUserStore } from '@/stores'
 
 const { language } = useNavigatorLanguage()
 setI18nLanguage(language.value?.split('-')[0] || '')
@@ -19,6 +20,9 @@ useRequestProvider({
   pollingWhenOffline: true,
   manual: true,
 })
+
+const userStore = useUserStore()
+userStore.getUserInfo()
 </script>
 
 <template>
