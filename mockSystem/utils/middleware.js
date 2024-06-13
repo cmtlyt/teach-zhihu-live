@@ -1,5 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-function checkAuthentication(callback) {
+import { checkPermission } from './permission'
+
+import { verifyToken } from '.'
+
+export function checkAuthentication(callback) {
   return async (props) => {
     const { headers } = props
     const authorization = headers.authorization
@@ -12,7 +15,7 @@ function checkAuthentication(callback) {
   }
 }
 
-function verifyUserPermission(callback, needPremission) {
+export function verifyUserPermission(callback, needPremission) {
   return checkAuthentication(async (props) => {
     const { tokenData } = props
     const { premission: userPremission } = tokenData
