@@ -36,6 +36,14 @@ jobs:
         with:
           version: 9
 
+      - name: Install MockSystem Dependencies
+        run: pnpm install
+        working-directory: mockSystem
+
+      - name: Build MockSystem
+        run: pnpm run build
+        working-directory: mockSystem
+
       - name: Install Dependencies
         run: pnpm install
 
