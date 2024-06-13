@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { verifySchema, initSchema, formatDto } = (() => {
   const { DB_SHOW_HIDDEN_FIELD } = PermissionMap
 
@@ -49,20 +49,22 @@ const { verifySchema, initSchema, formatDto } = (() => {
   function verifySchema(dbName, data) {
     const tbSchema = dbSchema[dbName]
     if (!tbSchema) return [false, `未找到${dbName}表`]
-    const newData = { ...data }
+    const newData = {}
     const autoUpdateField = []
     for (const key in tbSchema) {
+      // 获取已有字段
+      const fieldValue = (newData[key] = data[key])
+      const schemaInfo = tbSchema[key]
       // 必填验证
-      if (tbSchema[key].required && !newData[key]) return [false, `缺少${key}字段`]
+      if (schemaInfo.required && !fieldValue) return [false, `缺少${key}字段`]
       // 处理默认值
-      if (tbSchema[key].default && !newData[key]) newData[key] = tbSchema[key].default()
+      if (schemaInfo.default && !fieldValue) newData[key] = schemaInfo.default()
       // 类型验证
-      if (tbSchema[key].required && getType(newData[key]) !== tbSchema[key].type)
-        return [false, `字段${key}类型错误, 期望${tbSchema[key].type}, 实际${getType(newData[key])}`]
-      if (tbSchema[key].verify && newData[key] && !tbSchema[key].verify(newData[key]))
-        return [false, `字段${key}验证失败`]
+      if (schemaInfo.required && getType(fieldValue) !== schemaInfo.type)
+        return [false, `字段${key}类型错误, 期望${schemaInfo.type}, 实际${getType(fieldValue)}`]
+      if (schemaInfo.verify && fieldValue && !schemaInfo.verify(fieldValue)) return [false, `字段${key}验证失败`]
       // 暂存自动更新
-      if (tbSchema[key].autoUpdate) autoUpdateField.push(key)
+      if (schemaInfo.autoUpdate) autoUpdateField.push(key)
     }
     // 处理自动更新
     for (const key of autoUpdateField) newData[key] = tbSchema[key].default()
