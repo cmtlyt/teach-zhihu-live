@@ -1,3 +1,4 @@
+import SvgIcon from '@/components/SvgIcon.vue';
 <template>
   <div class="navbox">
     <ul class="navlist">
@@ -7,7 +8,9 @@
         <div role="button">首页</div>
         <div role="button">知乎知学堂</div>
         <div role="button">
-          <div><img src="../assets/icons/双四星.svg" alt="" /></div>
+          <div>
+            <Svgicon name="双四星" class="svg"></Svgicon>
+          </div>
           <div style="margin: 0px">发现</div>
         </div>
         <div role="button">等你来答</div>
@@ -23,12 +26,14 @@
       </li>
       <li class="four">
         <div class="msg" role="button">
-          <div class="img"><img src="../assets/icons/消息.svg" alt="" /></div>
-          <div class="text"><span>消息</span></div>
+          <div class="img">
+            <SvgIcon name="消息" class="img"></SvgIcon>
+          </div>
+          <span class="text">消息</span>
         </div>
         <div class="tell" role="button">
-          <div class="img"><img src="../assets/icons/私信.svg" alt="" /></div>
-          <div class="text"><span>私信</span></div>
+          <SvgIcon name="私信" class="img"></SvgIcon>
+          <span class="text">私信</span>
         </div>
         <div class="head" role="button">
           <img src="https://q4.itc.cn/q_70/images03/20240515/18f3c7131e344b6888f3d13c6570931a.jpeg" alt="" />
@@ -37,16 +42,12 @@
     </ul>
   </div>
 </template>
-
 <script setup lang="ts"></script>
-
 <style scoped lang="scss">
 .navbox {
   width: 100vm;
   height: 52px;
-
   box-shadow: 1px 1px #ccc 3px;
-
   .navlist {
     font-size: 16px;
     color: #666;
@@ -54,29 +55,22 @@
     height: 52px;
     margin: 0 auto;
     display: flex;
-
-    // border-bottom: 1px solid #ccc;
     .one {
-      flex-basis: 10%;
-
+      flex: 10%;
       img {
         height: 100%;
       }
     }
-
     .two {
-      flex-basis: 30%;
-
+      flex: 30%;
       div {
         display: block;
         float: left;
         line-height: 52px;
         height: 52px;
         margin-left: 24px;
-
         div {
           height: 52px;
-
           img {
             width: 18px;
             color: #666;
@@ -86,11 +80,9 @@
         }
       }
     }
-
     .three {
       display: flex;
-      flex-basis: 40%;
-
+      flex: 40%;
       .searchbox {
         height: 30px;
         margin: auto auto;
@@ -99,7 +91,6 @@
         background-color: #f5f5f5;
         display: flex;
         border: 1px solid #ddd;
-
         input {
           background-color: #f5f5f5;
           margin-left: 15px;
@@ -107,10 +98,8 @@
           height: 100%;
           flex-basis: 88%;
         }
-
         div {
-          flex-basis: 12%;
-
+          flex: 12%;
           img {
             width: 33%;
             margin-top: 7px;
@@ -118,16 +107,13 @@
           }
         }
       }
-
       .questionbox {
         flex-basis: 20%;
         height: 30px;
         text-align: center;
         line-height: 30px;
-
         margin: auto auto;
       }
-
       .question {
         color: white;
         width: 90%;
@@ -136,54 +122,43 @@
         background-color: rgb(73, 55, 235);
       }
     }
-
     .four {
-      flex-basis: 20%;
-
+      flex: 20%;
+      display: flex;
+      justify-content: space-between;
       .msg {
         width: 32px;
-        display: inline-block;
         flex-direction: column;
         text-align: center;
         margin-left: 80px;
-
         .img {
           margin-top: 5px;
           width: 24px;
-          float: right;
-
           img {
             width: 100%;
           }
         }
       }
-
       .tell {
         width: 32px;
-        display: inline-block;
         margin-left: 20px;
-
         img {
           margin-top: 5px;
           width: 24px;
-          float: right;
-
           img {
             width: 100%;
           }
         }
       }
-
       .head {
         width: 40px;
-        display: inline-block;
         margin-left: 20px;
-
+        display: flex;
+        justify-content: center;
         img {
           width: 36px;
           height: 36px;
           display: block;
-          margin: auto auto;
           background-color: aqua;
           border-radius: 4px;
         }

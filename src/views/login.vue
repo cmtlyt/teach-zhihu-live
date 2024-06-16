@@ -2,8 +2,7 @@
   <div class="bg">
     <div class="box">
       <div class="header">
-        <!-- <h2>知乎</h2> -->
-        <SvgIcon name="logo" alt="" />
+        <SvgIcon name="logo" alt="" class="svg" />
       </div>
       <div class="main">
         <div class="leftmain">
@@ -44,29 +43,29 @@
               <button id="login">登录</button>
             </div>
             <div id="PasswordLogin" v-else>
-              <div>
-                <input v-model="loginInfo.name" type="text" placeholder="手机号或邮箱" />
+              <div class="inputdiv">
+                <input class="userinput" v-model="loginInfo.name" type="text" placeholder="手机号或邮箱" />
               </div>
-              <div>
-                <input v-model="loginInfo.password" type="text" placeholder="密码" />
+              <div class="inputdiv">
+                <input class="pwdinput" v-model="loginInfo.password" type="text" placeholder="密码" />
               </div>
-              <div style="border: none; display: block">
-                <button id="reg" @click="reg">注册</button>
-                <button id="forgetP">忘记密码</button>
+              <div class="otherdiv">
+                <router-link class="reg" to="/register">注册</router-link>
+                <router-link class="forgetP" to="/register">忘记密码</router-link>
               </div>
-              <button id="login" @click="submit">登录</button>
+              <button class="login" @click="submit">登录</button>
             </div>
           </div>
           <div class="bottom">
             <ul>
               <li>
-                <SvgIcon name="QQ" alt="" />
+                <SvgIcon name="QQ" alt="" class="svg" />
               </li>
               <li>
-                <SvgIcon name="wx" alt="" />
+                <SvgIcon name="wx" alt="" class="svg" />
               </li>
               <li>
-                <SvgIcon name="weibo" alt="" />
+                <SvgIcon name="weibo" alt="" class="svg" />
               </li>
             </ul>
             <span> 未注册手机验证后自动登录，注册即代表同意《知乎协议》《隐私保护指引》 </span>
@@ -88,16 +87,11 @@ import { login } from '@/api/user'
 const router = useRouter()
 const isCodeLogin = ref(true)
 const loginInfo = reactive({ name: '', password: '' })
-
-function reg() {
-  router.push('/register')
-}
-
 function submit() {
   login(loginInfo)
     .then((res) => {
       if (res.data.success) {
-        Message.success({ content: '登录成功', onClose: () => router.push('/') })
+        Message.success({ content: '登录成功,请稍等', onClose: () => router.push('/') })
       }
     })
     .catch(([res]) => {
@@ -130,7 +124,7 @@ input {
   flex: 20%;
   line-height: 136px;
 
-  svg {
+  .svg {
     width: 200px;
     margin: 0 auto;
   }
@@ -216,8 +210,9 @@ input {
 
 .bg {
   background-image: url('../assets/img/background.jpg');
-  background-size: 100vw 100vh;
+  background-size: 100% 100%;
   height: 100vh;
+  width: 100vw;
 }
 
 .rightmain {
@@ -293,7 +288,7 @@ input {
     width: 80%;
     margin: 0 auto;
 
-    div {
+    .inputdiv {
       height: 50px;
       line-height: 50px;
       font-size: 16px;
@@ -301,26 +296,30 @@ input {
       margin-top: 10px;
       border-bottom: 1px solid #ccc;
 
-      button {
-        flex: 30%;
-        text-align: left;
-      }
-
-      input {
+      .userinput {
         flex: 70%;
       }
-
-      #reg {
-        float: left;
-        color: rgb(73, 55, 235);
-      }
-
-      #forgetP {
-        float: right;
+      .pwdinput {
+        flex: 70%;
       }
     }
 
-    #login {
+    .otherdiv {
+      height: 50px;
+      line-height: 50px;
+      font-size: 16px;
+      display: flex;
+      justify-content: space-between;
+      .reg {
+        color: rgb(73, 55, 235);
+      }
+
+      .forgetP {
+        margin-right: 10px;
+      }
+    }
+
+    .login {
       width: 80%;
       background-color: rgb(73, 55, 235);
       color: white;
@@ -347,7 +346,7 @@ input {
       height: 40px;
       line-height: 40px;
 
-      svg {
+      .svg {
         width: 30px;
         display: block;
         margin: 0px auto;
