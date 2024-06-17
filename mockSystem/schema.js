@@ -1,4 +1,5 @@
 import { getType, randomString } from './utils'
+import { PHONE_REG } from './utils/constant'
 import { checkPermission, formatPermission, PermissionMap } from './utils/permission'
 import { storage } from './utils/storage'
 
