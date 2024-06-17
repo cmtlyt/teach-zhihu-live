@@ -1,5 +1,5 @@
 import { formatDto } from './schema'
-import { getTokens, verifyToken } from './utils'
+import { getTokens, randomString, verifyToken } from './utils'
 import { checkAuthentication } from './utils/middleware'
 import { storage } from './utils/storage'
 
