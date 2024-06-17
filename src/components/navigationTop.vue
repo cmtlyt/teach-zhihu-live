@@ -9,9 +9,9 @@ import SvgIcon from '@/components/SvgIcon.vue';
         <div role="button">知乎知学堂</div>
         <div role="button">
           <div>
-            <Svgicon name="双四星" class="svg"></Svgicon>
+            <SvgIcon name="双四星" class="svg"></SvgIcon>
           </div>
-          <div style="margin: 0px">发现</div>
+          <div>发现</div>
         </div>
         <div role="button">等你来答</div>
       </li>
