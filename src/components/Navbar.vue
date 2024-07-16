@@ -1,141 +1,135 @@
 <template>
-  <div class="navbox">
-    <ul class="navlist">
-      <li class="one"><SvgIcon name="知乎" /></li>
-      <div style="clear: both"></div>
-      <li class="two">
-        <div role="button">首页</div>
-        <div role="button">知乎知学堂</div>
-        <div role="button">
-          <div class="star"><SvgIcon name="双四星" /></div>
-          <div style="margin: 0px">发现</div>
-        </div>
-        <div role="button">等你来答</div>
+  <div class="navBox">
+    <ul class="navList">
+      <li class="mainLogo">
+        <a href="#"><SvgIcon name="logo" /></a>
       </li>
-      <li class="three">
+      <li class="mainMenu">
+        <ul class="list">
+          <li class="item"><a href="#">首页</a></li>
+          <li class="item"><a href="#">知乎知学堂</a></li>
+          <li class="item">
+            <div class="icon"><SvgIcon name="双四星" class="img" /></div>
+            <span class="text"><a href="#">发现</a></span>
+          </li>
+          <li class="item"><a href="#">等你来答</a></li>
+        </ul>
+      </li>
+      <li class="searchBoxAndQouestion">
         <div class="searchbox">
-          <input type="text" />
-          <div class="search" role="button"><SvgIcon name="search" /></div>
+          <input type="text" class="input" />
+          <div class="search">
+            <a href="#"><SvgIcon name="search" class="img" /></a>
+          </div>
         </div>
-        <div class="questionbox" role="button">
-          <div class="question">提问</div>
+        <div class="questionbox">
+          <a href="#"><div class="question">提问</div></a>
         </div>
       </li>
-      <li class="four">
-        <div class="msg" role="button">
-          <div class="img"><SvgIcon name="消息" /></div>
-          <div class="text"><span>消息</span></div>
-        </div>
-        <div class="tell" role="button">
-          <div class="img"><SvgIcon name="私信" /></div>
-          <div class="text"><span>私信</span></div>
-        </div>
-        <div class="head" role="button">
-          <img src="https://q4.itc.cn/q_70/images03/20240515/18f3c7131e344b6888f3d13c6570931a.jpeg" alt="" />
-        </div>
+      <li class="personal">
+        <ul class="list">
+          <li class="item">
+            <button class="btn">
+              <div class="img"><SvgIcon name="消息" class="icon"></SvgIcon></div>
+              <div class="text">消息</div>
+            </button>
+          </li>
+          <li class="item">
+            <button class="btn">
+              <div class="img"><SvgIcon name="私信" class="icon"></SvgIcon></div>
+              <div class="text">私信</div>
+            </button>
+          </li>
+          <li class="item">
+            <button class="btn">
+              <div class="headbox">
+                <SvgIcon name="头像" class="head"></SvgIcon>
+              </div>
+            </button>
+          </li>
+        </ul>
       </li>
     </ul>
   </div>
 </template>
-
 <script setup lang="ts">
 import SvgIcon from '@/components/SvgIcon.vue'
 </script>
-
 <style scoped lang="scss">
-.star {
-  width: 26px;
-  height: 26px;
-}
-.search {
-  width: 18px;
-  height: 18px;
-}
-.navbox {
-  width: 100vm;
-  height: 52px;
-
+.navBox {
+  width: 100vw;
+  height: 5.2rem;
   box-shadow: 1px 1px #ccc 3px;
-
-  .navlist {
-    font-size: 16px;
-    color: #666;
-    width: 1200px;
-    height: 52px;
-    margin: 0 auto;
+  color: #666;
+  line-height: 5.2rem;
+  display: flex;
+  justify-content: center;
+  .navList {
+    width: 122rem;
+    height: 100%;
     display: flex;
-
-    // border-bottom: 1px solid #ccc;
-    .one {
-      flex-basis: 10%;
-
-      img {
-        height: 100%;
-      }
+    .mainLogo {
+      flex: 10%;
     }
+    .mainMenu {
+      flex: 30%;
 
-    .two {
-      flex-basis: 30%;
-
-      div {
-        display: block;
-        float: left;
-        line-height: 52px;
-        height: 52px;
-        margin-left: 24px;
-
-        div {
-          height: 52px;
-
-          img {
-            width: 18px;
-            color: #666;
-            display: block;
-            margin-top: 16px;
+      .list {
+        display: flex;
+        text-align: center;
+        font-size: 1.6rem;
+        height: 5.2rem;
+        .item {
+          flex: 1;
+          justify-content: center;
+          display: flex;
+          align-items: center;
+          .icon {
+            flex: 1;
+            .img {
+              height: 50%;
+            }
+          }
+          .text {
+            flex: 4;
           }
         }
       }
     }
-
-    .three {
+    .searchBoxAndQouestion {
+      flex: 40%;
       display: flex;
-      flex-basis: 40%;
-
+      align-items: center;
       .searchbox {
-        height: 30px;
-        margin: auto auto;
-        border-radius: 50px;
+        height: 3rem;
+        border-radius: 5rem;
         flex-basis: 80%;
         background-color: #f5f5f5;
         display: flex;
         align-items: center;
-        border: 1px solid #ddd;
+        border: 0.1px solid #ddd;
 
-        input {
+        .input {
           background-color: #f5f5f5;
-          margin-left: 15px;
+          margin-left: 1.5rem;
           outline: none;
           height: 100%;
           flex-basis: 88%;
         }
 
-        div {
+        .search {
           flex-basis: 12%;
-
-          img {
+          .img {
             width: 33%;
-            margin-top: 7px;
-            margin-left: 8px;
           }
         }
       }
 
       .questionbox {
         flex-basis: 20%;
-        height: 30px;
+        height: 3rem;
         text-align: center;
-        line-height: 30px;
-
+        line-height: 3rem;
         margin: auto auto;
       }
 
@@ -143,65 +137,49 @@ import SvgIcon from '@/components/SvgIcon.vue'
         color: white;
         width: 90%;
         float: right;
-        border-radius: 15px;
+        border-radius: 1.5rem;
         background-color: rgb(73, 55, 235);
       }
     }
-
-    .four {
-      flex-basis: 20%;
-
-      .msg {
-        width: 32px;
-        display: inline-block;
-        flex-direction: column;
+    .personal {
+      flex: 20%;
+      .list {
+        display: flex;
+        align-items: center;
         text-align: center;
-        margin-left: 80px;
-
-        .img {
-          margin-top: 5px;
-          width: 24px;
-          height: 24px;
-          float: right;
-
-          img {
-            width: 100%;
+        .item {
+          flex: 1;
+          height: 5.2rem;
+          display: flex;
+          flex-direction: column;
+          .btn {
+            height: 100%;
           }
-        }
-      }
-
-      .tell {
-        width: 32px;
-        display: inline-block;
-        margin-left: 20px;
-
-        .img {
-          margin-top: 5px;
-          width: 24px;
-          height: 24px;
-          float: right;
-
-          img {
-            width: 100%;
+          .img {
+            flex: 50%;
+            height: 50%;
           }
-        }
-      }
-
-      .head {
-        width: 40px;
-        display: inline-block;
-        margin-left: 20px;
-
-        img {
-          width: 36px;
-          height: 36px;
-          display: block;
-          margin: auto auto;
-          background-color: aqua;
-          border-radius: 4px;
+          .text {
+            flex: 50%;
+            height: 50%;
+            line-height: 2.6rem;
+          }
+          .headbox {
+            flex: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            .head {
+              height: 75%;
+              border-radius: 0.3rem;
+            }
+          }
         }
       }
     }
   }
+}
+.arco-dropdown-open .arco-icon-down {
+  transform: rotate(180deg);
 }
 </style>

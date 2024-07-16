@@ -1,9 +1,7 @@
 <template>
   <div class="bg">
     <div class="box">
-      <div class="header">
-        <SvgIcon name="logo" alt="" class="svg" />
-      </div>
+      <div class="header"><SvgIcon name="logo" class="logo"></SvgIcon></div>
       <div class="main">
         <div class="leftmain">
           <div class="top">
@@ -13,36 +11,36 @@
             <span class="three">其他扫码方式：微信</span>
           </div>
           <div class="bottom">
-            <ul>
-              <li>下载知乎</li>
-              <li>开通机构号</li>
-              <li>无障碍模式</li>
+            <ul class="list">
+              <li class="item">下载知乎</li>
+              <li class="item">开通机构号</li>
+              <li class="item">无障碍模式</li>
             </ul>
           </div>
         </div>
         <div class="rightmain">
           <div class="top">
             <div class="logway">
-              <ul>
-                <li role="button" @click="showCodeLogin">验证码登录</li>
-                <li role="button" @click="showPasswordLogin">密码登录</li>
+              <ul class="btnlist">
+                <button class="loginTypeBtn"><li @click="showCodeLogin">验证码登录</li></button>
+                <button class="loginTypeBtn"><li @click="showPasswordLogin">密码登录</li></button>
               </ul>
             </div>
-            <div id="CodeLogin" v-if="isCodeLogin">
-              <div>
-                <button id="choseLocation">中国+86</button>
-                <input type="text" placeholder="请输入手机号" />
+            <div class="CodeLogin" v-if="isCodeLogin">
+              <div class="inputRow">
+                <button id="choseLocation" class="btn">中国+86</button>
+                <input type="text" placeholder="请输入手机号" class="inputBox" />
               </div>
-              <div>
-                <input type="text" placeholder="获取短信验证码" />
-                <button id="getCode">获取短信验证码</button>
+              <div class="inputRow">
+                <input type="text" placeholder="获取短信验证码" class="inputBox" />
+                <button class="getCode btn">获取短信验证码</button>
               </div>
-              <div style="border: none; display: block">
-                <button id="getSpeechCode">获取语音验证码</button>
+              <div class="btnRow">
+                <button class="getSpeechCode">获取语音验证码</button>
               </div>
-              <button id="login">登录</button>
+              <button class="login">登录</button>
             </div>
-            <div id="PasswordLogin" v-else>
+            <div class="PasswordLogin" v-else>
               <div class="inputdiv">
                 <input class="userinput" v-model="loginInfo.name" type="text" placeholder="手机号或邮箱" />
               </div>
@@ -106,259 +104,225 @@ const showPasswordLogin = () => {
 }
 </script>
 
-<style lang="scss">
-input {
-  outline: none;
+<style lang="scss" scoped>
+.bg {
+  background-image: url('../assets/img/background.jpg');
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
 .box {
   display: flex;
-  flex-direction: column;
-  height: 688px;
-  width: 880px;
-  margin: auto auto;
+  width: 88rem;
+  height: 68.6rem;
   text-align: center;
-}
-
-.header {
-  flex: 20%;
-  line-height: 136px;
-
-  .svg {
-    width: 200px;
-    margin: 0 auto;
-  }
-}
-
-.main {
-  flex: 80%;
-  background-color: white;
-  display: flex;
-  box-sizing: border-box;
-
-  .leftmain {
-    flex: 40%;
-    border-right: 1px solid #ccc;
-    height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .header {
+    flex: 1;
     display: flex;
-    flex-direction: column;
-
-    .top {
-      flex: 75%;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      padding-top: 90px;
-
-      .one {
-        flex: 10%;
-        font-weight: bold;
-      }
-
-      .two {
-        flex: 10%;
-      }
-
-      .three {
-        flex: 10%;
-        font-weight: bold;
-      }
-
-      .img {
-        flex: 60%;
-      }
+    justify-content: center;
+    width: 88rem;
+    .logo {
+      width: 20rem;
     }
-
-    .bottom {
-      flex: 25%;
-
-      ul {
+  }
+  .main {
+    flex: 4;
+    background-color: white;
+    width: 88rem;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    .leftmain {
+      flex: 40%;
+      height: 100%;
+      display: flex;
+      border-right: 1px solid #ccc;
+      flex-direction: column;
+      .top {
+        flex: 75%;
         display: flex;
-        height: 80%;
-        margin-top: 22px;
-        justify-content: space-around;
-
-        li {
-          display: block;
-          flex-basis: 28%;
-          font-size: 12px;
-          border-radius: 20px;
-          border: 1px solid #ccc;
-          height: 30px;
-          line-height: 30px;
+        flex-direction: column;
+        padding-top: 9rem;
+        .one {
+          flex: 10%;
+          font-weight: bold;
+        }
+        .two {
+          flex: 10%;
+        }
+        .three {
+          flex: 10%;
+          font-weight: bold;
+        }
+        .img {
+          flex: 60%;
+        }
+      }
+      .bottom {
+        flex: 25%;
+        .list {
+          display: flex;
+          height: 80%;
+          justify-content: space-around;
+          align-items: center;
+          .item {
+            display: block;
+            width: 28%;
+            font-size: 1.2rem;
+            border-radius: 2rem;
+            border: 1px solid #ccc;
+            background-color: #eee;
+            height: 3rem;
+            line-height: 3rem;
+          }
         }
       }
     }
-  }
-
-  .rightmain {
-    flex: 60%;
-    height: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-
-    .top {
+    .rightmain {
       flex: 60%;
-    }
-
-    .bottom {
-      flex: 40%;
-    }
-  }
-}
-
-.bg {
-  background-image: url('../assets/img/background.jpg');
-  background-size: 100% 100%;
-  height: 100vh;
-  width: 100vw;
-}
-
-.rightmain {
-  font-size: 14px;
-  color: #666;
-  width: 100%;
-
-  .logway {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-
-    ul {
-      width: 60%;
+      height: 100%;
+      height: 100%;
       display: flex;
-
-      li {
-        font-size: 18px;
-        height: 60px;
-        line-height: 60px;
-        color: #444;
-        flex: 1;
-        flex: 1;
+      flex-direction: column;
+      font-size: 1.4rem;
+      color: #666;
+      width: 100%;
+      .top {
+        flex: 60%;
+        .logway {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          .btnlist {
+            width: 60%;
+            display: flex;
+            .loginTypeBtn {
+              font-size: 1.8rem;
+              height: 6rem;
+              line-height: 6rem;
+              color: #444;
+              flex: 1;
+            }
+          }
+        }
+        .CodeLogin {
+          width: 80%;
+          margin: 0 auto;
+          .inputRow,
+          .btnRow {
+            height: 5rem;
+            line-height: 5rem;
+            font-size: 1.6rem;
+            display: flex;
+            margin-top: 1rem;
+            border-bottom: 1px solid #ccc;
+            .btn {
+              flex: 30%;
+              text-align: left;
+            }
+            .inputBox {
+              flex: 70%;
+            }
+            .getCode {
+              text-align: right;
+            }
+            .getSpeechCode {
+              display: block;
+              color: rgb(73, 55, 235);
+              float: right;
+            }
+          }
+          .btnRow {
+            border: none;
+            display: block;
+          }
+          .login {
+            width: 80%;
+            background-color: rgb(73, 55, 235);
+            color: white;
+            border: none;
+            height: 4.2rem;
+            line-height: 4.2rem;
+            border-radius: 0.5rem;
+            margin-top: 1.5rem;
+          }
+        }
+        .PasswordLogin {
+          width: 80%;
+          margin: 0 auto;
+          .inputdiv {
+            height: 5rem;
+            line-height: 5rem;
+            font-size: 1.6rem;
+            display: flex;
+            margin-top: 1rem;
+            border-bottom: 1px solid #ccc;
+            .userinput {
+              flex: 70%;
+            }
+            .pwdinput {
+              flex: 70%;
+            }
+          }
+          .otherdiv {
+            height: 5rem;
+            line-height: 5rem;
+            font-size: 1.6rem;
+            display: flex;
+            justify-content: space-between;
+            .reg {
+              color: rgb(73, 55, 235);
+            }
+            .forgetP {
+              margin-right: 1rem;
+            }
+          }
+          .login {
+            width: 80%;
+            background-color: rgb(73, 55, 235);
+            color: white;
+            border: none;
+            height: 4.2rem;
+            line-height: 4.2rem;
+            border-radius: 0.5rem;
+            margin-top: 1.5rem;
+          }
+        }
+      }
+      .bottom {
+        flex: 40%;
+        ul {
+          display: flex;
+          width: 70%;
+          margin: 4rem auto 0rem;
+          justify-content: space-around;
+          li {
+            flex-basis: 40px;
+            background-color: #eee;
+            border-radius: 50%;
+            height: 4rem;
+            line-height: 4rem;
+            .svg {
+              width: 3rem;
+              display: block;
+              margin: 0px auto;
+            }
+          }
+        }
+        span {
+          display: block;
+          margin: 3rem auto;
+          width: 70%;
+          color: #999;
+        }
       }
     }
-  }
-
-  #CodeLogin {
-    width: 80%;
-    margin: 0 auto;
-
-    div {
-      height: 50px;
-      line-height: 50px;
-      font-size: 16px;
-      display: flex;
-      margin-top: 10px;
-      border-bottom: 1px solid #ccc;
-
-      button {
-        flex: 30%;
-        text-align: left;
-      }
-
-      input {
-        flex: 70%;
-      }
-
-      #getCode {
-        text-align: right;
-      }
-
-      #getSpeechCode {
-        display: block;
-        color: rgb(73, 55, 235);
-        float: right;
-      }
-    }
-
-    #login {
-      width: 80%;
-      background-color: rgb(73, 55, 235);
-      color: white;
-      border: none;
-      height: 42px;
-      line-height: 42px;
-      border-radius: 5px;
-      margin-top: 15px;
-    }
-  }
-
-  #PasswordLogin {
-    width: 80%;
-    margin: 0 auto;
-
-    .inputdiv {
-      height: 50px;
-      line-height: 50px;
-      font-size: 16px;
-      display: flex;
-      margin-top: 10px;
-      border-bottom: 1px solid #ccc;
-
-      .userinput {
-        flex: 70%;
-      }
-      .pwdinput {
-        flex: 70%;
-      }
-    }
-
-    .otherdiv {
-      height: 50px;
-      line-height: 50px;
-      font-size: 16px;
-      display: flex;
-      justify-content: space-between;
-      .reg {
-        color: rgb(73, 55, 235);
-      }
-
-      .forgetP {
-        margin-right: 10px;
-      }
-    }
-
-    .login {
-      width: 80%;
-      background-color: rgb(73, 55, 235);
-      color: white;
-      border: none;
-      height: 42px;
-      line-height: 42px;
-      border-radius: 5px;
-      margin-top: 15px;
-    }
-  }
-}
-
-.bottom {
-  ul {
-    display: flex;
-    width: 70%;
-    margin: 40px auto 0px;
-    justify-content: space-around;
-
-    li {
-      flex-basis: 40px;
-      background-color: #eee;
-      border-radius: 50%;
-      height: 40px;
-      line-height: 40px;
-
-      .svg {
-        width: 30px;
-        display: block;
-        margin: 0px auto;
-      }
-    }
-  }
-
-  span {
-    display: block;
-    margin: 30px auto;
-    width: 70%;
-    color: #999;
   }
 }
 </style>
