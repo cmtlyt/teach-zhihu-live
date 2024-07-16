@@ -4,7 +4,6 @@
       <SvgIcon name="logo" />
     </div>
     <div class="container">
-      <div style="flex-basis: 15%"></div>
       <a-form class="form-wrapper" :rules="rules" :model="form" layout="vertical" @submit="handleSubmit">
         <a-form-item field="name" label="用户名" validate-trigger="blur">
           <a-input v-model="form.name" placeholder="请输入用户名" />
@@ -76,17 +75,19 @@ function handleSubmit() {
   padding-top: 8vh;
   height: 100vh;
   width: 100vw;
+  display: flex;
+  flex-direction: column;
 }
 
 .head {
-  margin: 0px auto;
-  width: 400px;
+  margin: 0 auto;
+  width: 40rem;
   height: 12vh;
   text-align: center;
 }
 
 .container {
-  margin: 0px auto;
+  margin: 0 auto;
   width: 400px;
   height: 480px;
   background: white;
@@ -94,6 +95,7 @@ function handleSubmit() {
   flex-direction: column;
   border-radius: 10px;
   padding: 0 4rem;
+  padding-top: 7.2rem;
 }
 
 .gap {
@@ -124,8 +126,8 @@ function handleSubmit() {
 
     .icon-box {
       margin-left: 1rem;
-      height: 20px;
-      width: 20px;
+      height: 2rem;
+      width: 2rem;
     }
   }
 }
@@ -141,11 +143,11 @@ function handleSubmit() {
 
   .reg-btn {
     width: 60%;
-    height: 40px;
-    line-height: 40px;
+    height: 4rem;
+    line-height: 4rem;
     text-align: center;
-    border-radius: 12px;
-    font-size: 16px;
+    border-radius: 1.2rem;
+    font-size: 1.6rem;
   }
 }
 </style>
