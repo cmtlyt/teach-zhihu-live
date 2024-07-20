@@ -1,13 +1,45 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue'
+import { IconMore } from '@arco-design/web-vue/es/icon'
+
+const animation = ref(true)
+const countdown = ref(1)
+// 倒计时函数
+const startCountdown = () => {
+  const interval = setInterval(() => {
+    countdown.value--
+    if (countdown.value <= 0) {
+      clearInterval(interval)
+    }
+  }, 1000)
+}
+startCountdown()
+</script>
 
 <template>
-  <div class="item-box">
+  <div class="item-box" v-if="countdown > 0" :active="countdown > 1">
+    <a-space direction="vertical" size="large" :style="{ width: '100%' }">
+      <a-skeleton :animation="animation">
+        <a-space direction="vertical" :style="{ width: '100%' }" size="large">
+          <a-skeleton-line :rows="3" />
+          <a-skeleton-shape size="small" />
+        </a-space>
+      </a-skeleton>
+    </a-space>
+  </div>
+  <div class="item-box" v-else-if="countdown <= 0">
     <div class="item-title">
       <a href="#" class="title">为什么足浴按摩技师老是问客人是哪里人？</a>
     </div>
     <div class="item-content">
       小粉灯： 这不是第一个问题，第一个问题往往是： “你之前来过吗？”
       因为她要通过你对这个问题的回答判断能不能这次就收你小费做不正规的内容； 许多店提供正规服…
+      <a-space
+        ><a-link href="link">
+          阅读全文
+          <template #icon> <icon-down /></template>
+        </a-link>
+      </a-space>
     </div>
     <div class="item-actions">
       <a-space>
@@ -23,36 +55,50 @@
             <icon-caret-down />
           </template>
         </a-button>
-        <a-link href="link">
+        <a-button type="text">
           <template #icon>
             <icon-message />
           </template>
           1,099条评论
-        </a-link>
-        <a-link href="link">
+        </a-button>
+        <a-button type="text">
           <template #icon>
             <icon-send />
           </template>
-          分享
-        </a-link>
-        <a-link href="link">
+          <span>分享</span>
+        </a-button>
+        <a-button type="text">
           <template #icon>
             <icon-star-fill />
           </template>
-          收藏
-        </a-link>
-        <a-link href="link">
+          <span>收藏</span>
+        </a-button>
+        <a-button type="text">
           <template #icon>
             <icon-heart-fill />
           </template>
-          喜欢
-        </a-link>
+          <span>喜欢</span>
+        </a-button>
+        <a-dropdown position="bottom" class="darpdown">
+          <a-button type="text">
+            <template #icon>
+              <icon-more />
+            </template>
+          </a-button>
+          <template #content>
+            <a-doption>举报</a-doption>
+            <a-doption>不感兴趣</a-doption>
+          </template>
+        </a-dropdown>
       </a-space>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
+.arco-icon {
+  font-size: 16px;
+}
 .item-box {
   display: flex;
   flex-direction: column;
@@ -77,8 +123,5 @@
     justify-content: left;
     align-items: center;
   }
-}
-.arco-icon {
-  font-size: 32;
 }
 </style>

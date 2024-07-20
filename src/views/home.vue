@@ -5,16 +5,58 @@ import Navbar from '@/components/Navbar.vue'
 import HomeList from '@/components/HomeList.vue'
 
 const tab_item = ref(0)
-
+const items = ref([
+  { message: 'Foo' },
+  { message: 'Bar' },
+  { message: 'Foo' },
+  { message: 'Bar' },
+  { message: 'Foo' },
+  { message: 'Bar' },
+  { message: 'Foo' },
+  { message: 'Bar' },
+  { message: 'Foo' },
+  { message: 'Bar' },
+  { message: 'Foo' },
+  { message: 'Bar' },
+  { message: 'Foo' },
+  { message: 'Bar' },
+  { message: 'Foo' },
+  { message: 'Bar' },
+  { message: 'Foo' },
+  { message: 'Bar' },
+  { message: 'Foo' },
+  { message: 'Bar' },
+  { message: 'Foo' },
+  { message: 'Bar' },
+  { message: 'Foo' },
+  { message: 'Bar' },
+  { message: 'Foo' },
+  { message: 'Bar' },
+  { message: 'Foo' },
+  { message: 'Bar' },
+  { message: 'Foo' },
+  { message: 'Bar' },
+  { message: 'Foo' },
+  { message: 'Bar' },
+  { message: 'Foo' },
+  { message: 'Bar' },
+  { message: 'Foo' },
+  { message: 'Bar' },
+  { message: 'Foo' },
+  { message: 'Bar' },
+  { message: 'Foo' },
+  { message: 'Bar' },
+])
 const isTabActive = (val: number) => {
   return tab_item.value !== val ? 'tab-item' : 'tab-item tab-item-active'
 }
+const listRef = ref()
 </script>
 
 <template>
   <div class="box">
     <Navbar class="Navbar" />
-    <div class="main">
+    <div class="main" ref="listRef">
       <div class="left-main">
         <div class="img"><img src="\public\banner.jpg" alt="" /></div>
         <div class="list-box">
@@ -24,7 +66,7 @@ const isTabActive = (val: number) => {
             <li :class="isTabActive(2)" @click="tab_item = 2">热榜</li>
             <li :class="isTabActive(3)" @click="tab_item = 3">视频</li>
           </ul>
-          <HomeList></HomeList>
+          <HomeList v-for="(item, key) in items" :key="key" :value="item" />
         </div>
       </div>
       <div class="right-main"></div>
@@ -35,11 +77,11 @@ const isTabActive = (val: number) => {
 <style scoped lang="scss">
 .box {
   display: flex;
-  justify-content: center;
   flex-direction: column;
   width: 100vw;
   padding-top: 5.2rem;
   background-color: #f4f6f9;
+  height: 100%;
   .Navbar {
     position: fixed;
     top: 0;
