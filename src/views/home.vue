@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 
 import Navbar from '@/components/Navbar.vue'
-import HomeList from '@/components/HomeList.vue'
+import HomeList from '@/components/home/HomeList.vue'
 
 const tab_item = ref(0)
 const items = ref([
@@ -47,10 +47,10 @@ const items = ref([
   { message: 'Foo' },
   { message: 'Bar' },
 ])
+
 const isTabActive = (val: number) => {
   return tab_item.value !== val ? 'tab-item' : 'tab-item tab-item-active'
 }
-const listRef = ref()
 </script>
 
 <template>
@@ -66,7 +66,7 @@ const listRef = ref()
             <li :class="isTabActive(2)" @click="tab_item = 2">热榜</li>
             <li :class="isTabActive(3)" @click="tab_item = 3">视频</li>
           </ul>
-          <HomeList v-for="(item, key) in items" :key="key" :value="item" />
+          <HomeList v-for="item in items" :key="item" />
         </div>
       </div>
       <div class="right-main"></div>
