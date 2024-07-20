@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onDeactivated, onMounted, ref } from 'vue'
 
 import Navbar from '@/components/Navbar.vue'
 import HomeList from '@/components/home/HomeList.vue'
-
 const tab_item = ref(0)
 const items = ref([
   { message: 'Foo' },
@@ -51,6 +50,21 @@ const items = ref([
 const isTabActive = (val: number) => {
   return tab_item.value !== val ? 'tab-item' : 'tab-item tab-item-active'
 }
+
+const handleScrollLoad = () => {
+  const { clientHeight, scrollTop, scrollHeight } = document.documentElement
+  if (clientHeight + scrollTop > scrollHeight - 20) {
+    items.value.push(...Array(10).fill({ message: 'Foo' }))
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScrollLoad)
+})
+
+onDeactivated(() => {
+  window.removeEventListener('scroll', handleScrollLoad)
+})
 </script>
 
 <template>
