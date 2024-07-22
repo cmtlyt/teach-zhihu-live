@@ -69,7 +69,7 @@ onDeactivated(() => {
 
 <template>
   <div class="box">
-    <Navbar class="Navbar" />
+    <Navbar class="nav-bar" />
     <div class="main" ref="listRef">
       <div class="left-main">
         <div class="img"><img src="\public\banner.jpg" alt="" /></div>
@@ -96,7 +96,7 @@ onDeactivated(() => {
   padding-top: 5.2rem;
   background-color: #f4f6f9;
   height: 100%;
-  .Navbar {
+  .nav-bar {
     position: fixed;
     top: 0;
     left: 0;
