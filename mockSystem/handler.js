@@ -1,5 +1,9 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const mockHandler = {
+import { formatDto } from './schema'
+import { getTokens, randomString, verifyToken } from './utils'
+import { checkAuthentication } from './utils/middleware'
+import { storage } from './utils/storage'
+
+export const mockHandler = {
   post: {
     async register({ data }) {
       const [user] = await storage.find('user', {

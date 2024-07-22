@@ -20,7 +20,13 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['.eslintrc.{js,cjs}', 'public/**/*.js', 'vite.config.{js,ts}', 'plugins/**/*.{js,ts}'],
+      files: [
+        '.eslintrc.{js,cjs}',
+        'public/**/*.js',
+        'vite.config.{js,ts}',
+        'plugins/**/*.{js,ts}',
+        'mockSystem/**/*.{js,mjs,cjs}',
+      ],
       parserOptions: {
         project: false,
       },
