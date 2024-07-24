@@ -99,6 +99,7 @@ startCountdown()
 .arco-icon {
   font-size: 16px;
 }
+
 .item-box {
   display: flex;
   flex-direction: column;
@@ -108,14 +109,17 @@ startCountdown()
   .item-title {
     font-size: 1.6rem;
     font-weight: 1000;
+
     .title {
       line-height: 1.6;
     }
   }
+
   .item-content {
     font-size: 1.5rem;
     line-height: 1.67;
   }
+
   .item-actions {
     height: 5.2rem;
     margin-bottom: -1rem;

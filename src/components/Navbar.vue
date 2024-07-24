@@ -64,13 +64,16 @@ import SvgIcon from '@/components/SvgIcon.vue'
   line-height: 5.2rem;
   display: flex;
   justify-content: center;
+
   .navList {
     width: 122rem;
     height: 100%;
     display: flex;
+
     .mainLogo {
       flex: 10%;
     }
+
     .mainMenu {
       flex: 30%;
 
@@ -79,27 +82,33 @@ import SvgIcon from '@/components/SvgIcon.vue'
         text-align: center;
         font-size: 1.6rem;
         height: 5.2rem;
+
         .item {
           flex: 1;
           justify-content: center;
           display: flex;
           align-items: center;
+
           .icon {
             flex: 1;
+
             .img {
               height: 50%;
             }
           }
+
           .text {
             flex: 4;
           }
         }
       }
     }
+
     .searchBoxAndQouestion {
       flex: 40%;
       display: flex;
       align-items: center;
+
       .searchbox {
         height: 3rem;
         border-radius: 5rem;
@@ -119,6 +128,7 @@ import SvgIcon from '@/components/SvgIcon.vue'
 
         .search {
           flex-basis: 12%;
+
           .img {
             width: 33%;
           }
@@ -143,32 +153,39 @@ import SvgIcon from '@/components/SvgIcon.vue'
     }
     .personal {
       flex: 20%;
+
       .list {
         display: flex;
         align-items: center;
         text-align: center;
+
         .item {
           flex: 1;
           height: 5.2rem;
           display: flex;
           flex-direction: column;
+
           .btn {
             height: 100%;
           }
+
           .img {
             flex: 50%;
             height: 50%;
           }
+
           .text {
             flex: 50%;
             height: 50%;
             line-height: 2.6rem;
           }
+
           .headbox {
             flex: 100%;
             height: 100%;
             display: flex;
             align-items: center;
+
             .head {
               height: 75%;
               border-radius: 0.3rem;
@@ -179,6 +196,7 @@ import SvgIcon from '@/components/SvgIcon.vue'
     }
   }
 }
+
 .arco-dropdown-open .arco-icon-down {
   transform: rotate(180deg);
 }

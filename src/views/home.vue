@@ -96,6 +96,7 @@ onDeactivated(() => {
   padding-top: 5.2rem;
   background-color: #f4f6f9;
   height: 100%;
+
   .nav-bar {
     position: fixed;
     top: 0;
@@ -104,26 +105,31 @@ onDeactivated(() => {
     background-color: white;
     z-index: 1000;
   }
+
   .main {
     display: flex;
     width: 100vw;
     justify-content: center;
     margin-top: 1rem;
+
     .left-main {
       width: 67.8rem;
       display: flex;
       flex-direction: column;
       margin-right: 1rem;
       background-color: white;
+
       .img {
         box-shadow: -1px -1px #ccc 2px;
       }
+
       .list-box {
         box-shadow: -1px -1px #ccc 2px;
         width: 100%;
         margin-top: 10px;
         display: flex;
         flex-direction: column;
+
         .tab {
           width: 100%;
           height: 52px;
@@ -134,21 +140,25 @@ onDeactivated(() => {
           color: #666;
           box-sizing: border-box;
           border-bottom: 1px solid #ccc;
+
           .tab-item {
             line-height: 52px;
             width: 76px;
             text-align: center;
           }
+
           .tab-item:hover {
             color: rgb(77, 17, 160);
             cursor: pointer;
           }
+
           .tab-item-active {
             color: skyblue;
           }
         }
       }
     }
+
     .right-main {
       width: 29.8rem;
     }

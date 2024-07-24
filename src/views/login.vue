@@ -114,6 +114,7 @@ const showPasswordLogin = () => {
   justify-content: center;
   align-items: center;
 }
+
 .box {
   display: flex;
   width: 88rem;
@@ -122,15 +123,18 @@ const showPasswordLogin = () => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   .header {
     flex: 1;
     display: flex;
     justify-content: center;
     width: 88rem;
+
     .logo {
       width: 20rem;
     }
   }
+
   .main {
     flex: 4;
     background-color: white;
@@ -138,39 +142,48 @@ const showPasswordLogin = () => {
     display: flex;
     flex-direction: row;
     box-sizing: border-box;
+
     .leftmain {
       flex: 40%;
       height: 100%;
       display: flex;
       border-right: 1px solid #ccc;
       flex-direction: column;
+
       .top {
         flex: 75%;
         display: flex;
         flex-direction: column;
         padding-top: 9rem;
+
         .one {
           flex: 10%;
           font-weight: bold;
         }
+
         .two {
           flex: 10%;
         }
+
         .three {
           flex: 10%;
           font-weight: bold;
         }
+
         .img {
           flex: 60%;
         }
       }
+
       .bottom {
         flex: 25%;
+
         .list {
           display: flex;
           height: 80%;
           justify-content: space-around;
           align-items: center;
+
           .item {
             display: block;
             width: 28%;
@@ -184,6 +197,7 @@ const showPasswordLogin = () => {
         }
       }
     }
+
     .rightmain {
       flex: 60%;
       height: 100%;
@@ -193,15 +207,19 @@ const showPasswordLogin = () => {
       font-size: 1.4rem;
       color: #666;
       width: 100%;
+
       .top {
         flex: 60%;
+
         .logway {
           width: 100%;
           display: flex;
           flex-direction: column;
+
           .btnlist {
             width: 60%;
             display: flex;
+
             .loginTypeBtn {
               font-size: 1.8rem;
               height: 6rem;
@@ -211,9 +229,11 @@ const showPasswordLogin = () => {
             }
           }
         }
+
         .CodeLogin {
           width: 80%;
           margin: 0 auto;
+
           .inputRow,
           .btnRow {
             height: 5rem;
@@ -222,26 +242,32 @@ const showPasswordLogin = () => {
             display: flex;
             margin-top: 1rem;
             border-bottom: 1px solid #ccc;
+
             .btn {
               flex: 30%;
               text-align: left;
             }
+
             .inputBox {
               flex: 70%;
             }
+
             .getCode {
               text-align: right;
             }
+
             .getSpeechCode {
               display: block;
               color: rgb(73, 55, 235);
               float: right;
             }
           }
+
           .btnRow {
             border: none;
             display: block;
           }
+
           .login {
             width: 80%;
             background-color: rgb(73, 55, 235);
@@ -253,9 +279,11 @@ const showPasswordLogin = () => {
             margin-top: 1.5rem;
           }
         }
+
         .PasswordLogin {
           width: 80%;
           margin: 0 auto;
+
           .inputdiv {
             height: 5rem;
             line-height: 5rem;
@@ -263,26 +291,32 @@ const showPasswordLogin = () => {
             display: flex;
             margin-top: 1rem;
             border-bottom: 1px solid #ccc;
+
             .userinput {
               flex: 70%;
             }
+
             .pwdinput {
               flex: 70%;
             }
           }
+
           .otherdiv {
             height: 5rem;
             line-height: 5rem;
             font-size: 1.6rem;
             display: flex;
             justify-content: space-between;
+
             .reg {
               color: rgb(73, 55, 235);
             }
+
             .forgetP {
               margin-right: 1rem;
             }
           }
+
           .login {
             width: 80%;
             background-color: rgb(73, 55, 235);
@@ -295,19 +329,23 @@ const showPasswordLogin = () => {
           }
         }
       }
+
       .bottom {
         flex: 40%;
+
         ul {
           display: flex;
           width: 70%;
           margin: 4rem auto 0rem;
           justify-content: space-around;
+
           li {
             flex-basis: 40px;
             background-color: #eee;
             border-radius: 50%;
             height: 4rem;
             line-height: 4rem;
+
             .svg {
               width: 3rem;
               display: block;
@@ -315,6 +353,7 @@ const showPasswordLogin = () => {
             }
           }
         }
+
         span {
           display: block;
           margin: 3rem auto;
