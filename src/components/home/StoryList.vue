@@ -3,17 +3,24 @@ import { ref } from 'vue'
 import { IconMore } from '@arco-design/web-vue/es/icon'
 
 const animation = ref(true)
-const countdown = ref(1)
+const countdown = ref(0)
+defineProps<{
+  title?: string
+  content?: string
+  date?: Date
+  author?: string
+  tags?: [string]
+}>()
 // 倒计时函数
-const startCountdown = () => {
-  const interval = setInterval(() => {
-    countdown.value--
-    if (countdown.value <= 0) {
-      clearInterval(interval)
-    }
-  }, 1000)
-}
-startCountdown()
+// const startCountdown = () => {
+//   const interval = setInterval(() => {
+//     countdown.value--
+//     if (countdown.value <= 0) {
+//       clearInterval(interval)
+//     }
+//   }, 1000)
+// }
+// startCountdown()
 </script>
 
 <template>
@@ -29,11 +36,10 @@ startCountdown()
   </div>
   <div class="item-box" v-else-if="countdown <= 0">
     <div class="item-title">
-      <a href="#" class="title">为什么足浴按摩技师老是问客人是哪里人？</a>
+      <a href="#" class="title">{{ title }}</a>
     </div>
     <div class="item-content">
-      小粉灯： 这不是第一个问题，第一个问题往往是： “你之前来过吗？”
-      因为她要通过你对这个问题的回答判断能不能这次就收你小费做不正规的内容； 许多店提供正规服…
+      {{ content }}
       <a-space
         ><a-link href="link">
           阅读全文

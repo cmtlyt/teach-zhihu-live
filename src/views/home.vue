@@ -5,46 +5,174 @@ import Navbar from '@/components/Navbar.vue'
 import HomeList from '@/components/home/StoryList.vue'
 const tab_item = ref(0)
 const items = ref([
-  { message: 'Foo' },
-  { message: 'Bar' },
-  { message: 'Foo' },
-  { message: 'Bar' },
-  { message: 'Foo' },
-  { message: 'Bar' },
-  { message: 'Foo' },
-  { message: 'Bar' },
-  { message: 'Foo' },
-  { message: 'Bar' },
-  { message: 'Foo' },
-  { message: 'Bar' },
-  { message: 'Foo' },
-  { message: 'Bar' },
-  { message: 'Foo' },
-  { message: 'Bar' },
-  { message: 'Foo' },
-  { message: 'Bar' },
-  { message: 'Foo' },
-  { message: 'Bar' },
-  { message: 'Foo' },
-  { message: 'Bar' },
-  { message: 'Foo' },
-  { message: 'Bar' },
-  { message: 'Foo' },
-  { message: 'Bar' },
-  { message: 'Foo' },
-  { message: 'Bar' },
-  { message: 'Foo' },
-  { message: 'Bar' },
-  { message: 'Foo' },
-  { message: 'Bar' },
-  { message: 'Foo' },
-  { message: 'Bar' },
-  { message: 'Foo' },
-  { message: 'Bar' },
-  { message: 'Foo' },
-  { message: 'Bar' },
-  { message: 'Foo' },
-  { message: 'Bar' },
+  {
+    title: '为什么足浴按摩技师老是问客人是哪里人？',
+    content:
+      '小粉灯： 这不是第一个问题，第一个问题往往是： “你之前来过吗？” 因为她要通过你对这个问题的回答判断能不能这次就收你小费做不正规的内容； 许多店提供正规服…',
+    date: '',
+    author: '',
+    tags: '',
+  },
+  {
+    title: '为什么足浴按摩技师老是问客人是哪里人？',
+    content:
+      '小粉灯： 这不是第一个问题，第一个问题往往是： “你之前来过吗？” 因为她要通过你对这个问题的回答判断能不能这次就收你小费做不正规的内容； 许多店提供正规服…',
+    date: '',
+    author: '',
+    tags: '',
+  },
+  {
+    title: '为什么足浴按摩技师老是问客人是哪里人？',
+    content:
+      '小粉灯： 这不是第一个问题，第一个问题往往是： “你之前来过吗？” 因为她要通过你对这个问题的回答判断能不能这次就收你小费做不正规的内容； 许多店提供正规服…',
+    date: '',
+    author: '',
+    tags: '',
+  },
+  {
+    title: '为什么足浴按摩技师老是问客人是哪里人？',
+    content:
+      '小粉灯： 这不是第一个问题，第一个问题往往是： “你之前来过吗？” 因为她要通过你对这个问题的回答判断能不能这次就收你小费做不正规的内容； 许多店提供正规服…',
+    date: '',
+    author: '',
+    tags: '',
+  },
+  {
+    title: '为什么足浴按摩技师老是问客人是哪里人？',
+    content:
+      '小粉灯： 这不是第一个问题，第一个问题往往是： “你之前来过吗？” 因为她要通过你对这个问题的回答判断能不能这次就收你小费做不正规的内容； 许多店提供正规服…',
+    date: '',
+    author: '',
+    tags: '',
+  },
+  {
+    title: '为什么足浴按摩技师老是问客人是哪里人？',
+    content:
+      '小粉灯： 这不是第一个问题，第一个问题往往是： “你之前来过吗？” 因为她要通过你对这个问题的回答判断能不能这次就收你小费做不正规的内容； 许多店提供正规服…',
+    date: '',
+    author: '',
+    tags: '',
+  },
+  {
+    title: '为什么足浴按摩技师老是问客人是哪里人？',
+    content:
+      '小粉灯： 这不是第一个问题，第一个问题往往是： “你之前来过吗？” 因为她要通过你对这个问题的回答判断能不能这次就收你小费做不正规的内容； 许多店提供正规服…',
+    date: '',
+    author: '',
+    tags: '',
+  },
+  {
+    title: '为什么足浴按摩技师老是问客人是哪里人？',
+    content:
+      '小粉灯： 这不是第一个问题，第一个问题往往是： “你之前来过吗？” 因为她要通过你对这个问题的回答判断能不能这次就收你小费做不正规的内容； 许多店提供正规服…',
+    date: '',
+    author: '',
+    tags: '',
+  },
+  {
+    title: '为什么足浴按摩技师老是问客人是哪里人？',
+    content:
+      '小粉灯： 这不是第一个问题，第一个问题往往是： “你之前来过吗？” 因为她要通过你对这个问题的回答判断能不能这次就收你小费做不正规的内容； 许多店提供正规服…',
+    date: '',
+    author: '',
+    tags: '',
+  },
+  {
+    title: '为什么足浴按摩技师老是问客人是哪里人？',
+    content:
+      '小粉灯： 这不是第一个问题，第一个问题往往是： “你之前来过吗？” 因为她要通过你对这个问题的回答判断能不能这次就收你小费做不正规的内容； 许多店提供正规服…',
+    date: '',
+    author: '',
+    tags: '',
+  },
+  {
+    title: '为什么足浴按摩技师老是问客人是哪里人？',
+    content:
+      '小粉灯： 这不是第一个问题，第一个问题往往是： “你之前来过吗？” 因为她要通过你对这个问题的回答判断能不能这次就收你小费做不正规的内容； 许多店提供正规服…',
+    date: '',
+    author: '',
+    tags: '',
+  },
+  {
+    title: '为什么足浴按摩技师老是问客人是哪里人？',
+    content:
+      '小粉灯： 这不是第一个问题，第一个问题往往是： “你之前来过吗？” 因为她要通过你对这个问题的回答判断能不能这次就收你小费做不正规的内容； 许多店提供正规服…',
+    date: '',
+    author: '',
+    tags: '',
+  },
+  {
+    title: '为什么足浴按摩技师老是问客人是哪里人？',
+    content:
+      '小粉灯： 这不是第一个问题，第一个问题往往是： “你之前来过吗？” 因为她要通过你对这个问题的回答判断能不能这次就收你小费做不正规的内容； 许多店提供正规服…',
+    date: '',
+    author: '',
+    tags: '',
+  },
+  {
+    title: '为什么足浴按摩技师老是问客人是哪里人？',
+    content:
+      '小粉灯： 这不是第一个问题，第一个问题往往是： “你之前来过吗？” 因为她要通过你对这个问题的回答判断能不能这次就收你小费做不正规的内容； 许多店提供正规服…',
+    date: '',
+    author: '',
+    tags: '',
+  },
+  {
+    title: '为什么足浴按摩技师老是问客人是哪里人？',
+    content:
+      '小粉灯： 这不是第一个问题，第一个问题往往是： “你之前来过吗？” 因为她要通过你对这个问题的回答判断能不能这次就收你小费做不正规的内容； 许多店提供正规服…',
+    date: '',
+    author: '',
+    tags: '',
+  },
+  {
+    title: '为什么足浴按摩技师老是问客人是哪里人？',
+    content:
+      '小粉灯： 这不是第一个问题，第一个问题往往是： “你之前来过吗？” 因为她要通过你对这个问题的回答判断能不能这次就收你小费做不正规的内容； 许多店提供正规服…',
+    date: '',
+    author: '',
+    tags: '',
+  },
+  {
+    title: '为什么足浴按摩技师老是问客人是哪里人？',
+    content:
+      '小粉灯： 这不是第一个问题，第一个问题往往是： “你之前来过吗？” 因为她要通过你对这个问题的回答判断能不能这次就收你小费做不正规的内容； 许多店提供正规服…',
+    date: '',
+    author: '',
+    tags: '',
+  },
+  {
+    title: '为什么足浴按摩技师老是问客人是哪里人？',
+    content:
+      '小粉灯： 这不是第一个问题，第一个问题往往是： “你之前来过吗？” 因为她要通过你对这个问题的回答判断能不能这次就收你小费做不正规的内容； 许多店提供正规服…',
+    date: '',
+    author: '',
+    tags: '',
+  },
+  {
+    title: '为什么足浴按摩技师老是问客人是哪里人？',
+    content:
+      '小粉灯： 这不是第一个问题，第一个问题往往是： “你之前来过吗？” 因为她要通过你对这个问题的回答判断能不能这次就收你小费做不正规的内容； 许多店提供正规服…',
+    date: '',
+    author: '',
+    tags: '',
+  },
+  {
+    title: '为什么足浴按摩技师老是问客人是哪里人？',
+    content:
+      '小粉灯： 这不是第一个问题，第一个问题往往是： “你之前来过吗？” 因为她要通过你对这个问题的回答判断能不能这次就收你小费做不正规的内容； 许多店提供正规服…',
+    date: '',
+    author: '',
+    tags: '',
+  },
+  {
+    title: '为什么足浴按摩技师老是问客人是哪里人？',
+    content:
+      '小粉灯： 这不是第一个问题，第一个问题往往是： “你之前来过吗？” 因为她要通过你对这个问题的回答判断能不能这次就收你小费做不正规的内容； 许多店提供正规服…',
+    date: '',
+    author: '',
+    tags: '',
+  },
 ])
 
 const isTabActive = (val: number) => {
@@ -54,8 +182,22 @@ const isTabActive = (val: number) => {
 const handleScrollLoad = () => {
   const { clientHeight, scrollTop, scrollHeight } = document.documentElement
   if (clientHeight + scrollTop > scrollHeight - 20) {
-    items.value.push(...Array(10).fill({ message: 'Foo' }))
+    // items.value.push(...Array(10).fill({ message: 'Foo' }))
+    addNewStory()
   }
+}
+
+const addNewStory = () => {
+  let newArray = new Array(10)
+  newArray.fill({
+    title: '为什么足浴按摩技师老是问客人是哪里人？',
+    content:
+      '小粉灯： 这不是第一个问题，第一个问题往往是： “你之前来过吗？” 因为她要通过你对这个问题的回答判断能不能这次就收你小费做不正规的内容； 许多店提供正规服…',
+    date: '',
+    author: '',
+    tags: '',
+  })
+  items.value.push(...newArray)
 }
 
 onMounted(() => {
@@ -72,7 +214,7 @@ onDeactivated(() => {
     <Navbar class="nav-bar" />
     <div class="main" ref="listRef">
       <div class="left-main">
-        <div class="img"><img src="\public\banner.jpg" alt="" /></div>
+        <div class="img"><img src="/public/banner.jpg" alt="" /></div>
         <div class="list-box">
           <ul class="tab">
             <li :class="isTabActive(0)" @click="tab_item = 0">关注</li>
@@ -80,7 +222,15 @@ onDeactivated(() => {
             <li :class="isTabActive(2)" @click="tab_item = 2">热榜</li>
             <li :class="isTabActive(3)" @click="tab_item = 3">视频</li>
           </ul>
-          <HomeList v-for="item in items" :key="item" />
+          <HomeList
+            v-for="(value, key) in items"
+            :title="value.title"
+            :content="value.content"
+            :date="value.date"
+            :author="value.author"
+            :tags="value.tags"
+            :key="key"
+          />
         </div>
       </div>
       <div class="right-main"></div>
