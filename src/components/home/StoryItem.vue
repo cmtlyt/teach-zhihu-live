@@ -1,15 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { IconMore } from '@arco-design/web-vue/es/icon'
 
-const animation = ref(true)
-const countdown = ref(0)
 defineProps<{
   title?: string
   content?: string
   date?: Date
   author?: string
-  tags?: [string]
+  tags?: string[]
 }>()
 // 倒计时函数
 // const startCountdown = () => {
@@ -24,7 +21,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="item-box" v-if="countdown > 0" :active="countdown > 1">
+  <!-- <div class="item-box" v-if="countdown > 0" :active="countdown > 1">
     <a-space direction="vertical" size="large" :style="{ width: '100%' }">
       <a-skeleton :animation="animation">
         <a-space direction="vertical" :style="{ width: '100%' }" size="large">
@@ -33,8 +30,8 @@ defineProps<{
         </a-space>
       </a-skeleton>
     </a-space>
-  </div>
-  <div class="item-box" v-else-if="countdown <= 0">
+  </div> -->
+  <div class="item-box">
     <div class="item-title">
       <a href="#" class="title">{{ title }}</a>
     </div>

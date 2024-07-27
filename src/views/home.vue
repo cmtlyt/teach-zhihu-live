@@ -2,7 +2,7 @@
 import { onDeactivated, onMounted, ref } from 'vue'
 
 import Navbar from '@/components/Navbar.vue'
-import HomeList from '@/components/home/StoryList.vue'
+import StoryItem from '@/components/home/StoryItem.vue'
 const tab_item = ref(0)
 const items = ref([
   {
@@ -222,7 +222,7 @@ onDeactivated(() => {
             <li :class="isTabActive(2)" @click="tab_item = 2">热榜</li>
             <li :class="isTabActive(3)" @click="tab_item = 3">视频</li>
           </ul>
-          <HomeList
+          <StoryItem
             v-for="(value, key) in items"
             :title="value.title"
             :content="value.content"
