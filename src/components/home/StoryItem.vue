@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { IconMore } from '@arco-design/web-vue/es/icon'
-
 defineProps<{
   title?: string
   content?: string
@@ -36,7 +34,7 @@ defineProps<{
       <a href="#" class="title">{{ title }}</a>
     </div>
     <div class="item-content">
-      {{ content }}
+      <span>{{ content }}</span>
       <a-space
         ><a-link href="link">
           阅读全文
@@ -51,7 +49,7 @@ defineProps<{
             <icon-caret-up />
           </template>
           <!-- Use the default slot to avoid extra spaces -->
-          <template #default>赞同</template>
+          <template #default><span>赞同</span></template>
         </a-button>
         <a-button type="primary">
           <template #icon>
