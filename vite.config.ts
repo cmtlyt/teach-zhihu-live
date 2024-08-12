@@ -8,7 +8,7 @@ import imageminGif2webp from 'imagemin-gif2webp'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { vitePluginForArco } from '@arco-plugins/vite-vue'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
-import { buildContainerPlugin } from '@cmtlyt/plugin-use-container'
+// import { buildContainerPlugin } from '@cmtlyt/plugin-use-container'
 
 import packageConfig from './package.json'
 import { injectGlobalVariabel } from './plugins/injectGlobalVariabel'
@@ -32,7 +32,7 @@ export default defineConfig({
     vitePluginForArco({ style: 'css' }),
     VueI18nPlugin({ include: normalizePath(path.resolve(__dirname, './src/locales/*.json')) }),
     injectGlobalVariabel(),
-    buildContainerPlugin({}),
+    // buildContainerPlugin({}),
   ],
   css: {
     preprocessorOptions: {
