@@ -26,6 +26,7 @@ module.exports = {
         'vite.config.{js,ts}',
         'plugins/**/*.{js,ts}',
         'mockSystem/**/*.{js,mjs,cjs}',
+        'backend/**/*.{js,mjs,cjs,ts}',
       ],
       parserOptions: {
         project: false,
