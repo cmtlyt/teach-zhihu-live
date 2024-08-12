@@ -3,16 +3,12 @@ import path from 'path'
 import { defineConfig, normalizePath } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import viteImagemin from '@vheemstra/vite-plugin-imagemin'
-// import imageminWebp from 'imagemin-webp'
 import imageminSvg from 'imagemin-svgo'
 import imageminGif2webp from 'imagemin-gif2webp'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-// import AutoImport from 'unplugin-auto-import/vite'
-// import Components from 'unplugin-vue-components/vite'
-// import { ArcoResolver } from 'unplugin-vue-components/resolvers'
 import { vitePluginForArco } from '@arco-plugins/vite-vue'
-import legacy from '@vitejs/plugin-legacy'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
+import { buildContainerPlugin } from '@cmtlyt/plugin-use-container'
 
 import packageConfig from './package.json'
 import { injectGlobalVariabel } from './plugins/injectGlobalVariabel'
@@ -28,19 +24,15 @@ export default defineConfig({
       plugins: { svg: imageminSvg() },
       makeWebp: {
         plugins: {
-          // jpg: imageminWebp(),
-          // png: imageminWebp(),
           gif: imageminGif2webp(),
         },
       },
     }),
     createSvgIconsPlugin({ iconDirs: [normalizePath(path.join(__dirname, './src/assets/icons'))] }),
-    // AutoImport({ resolvers: [ArcoResolver()] }),
-    // Components({ resolvers: [ArcoResolver({ sideEffect: true })] }),
     vitePluginForArco({ style: 'css' }),
-    legacy(),
     VueI18nPlugin({ include: normalizePath(path.resolve(__dirname, './src/locales/*.json')) }),
     injectGlobalVariabel(),
+    buildContainerPlugin({}),
   ],
   css: {
     preprocessorOptions: {
